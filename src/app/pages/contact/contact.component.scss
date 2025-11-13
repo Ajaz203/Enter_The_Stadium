@@ -1,0 +1,27 @@
+.hero-contact {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  min-height: 40vh;
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+  }
+
+  h1, p {
+    z-index: 2;
+  }
+}
+
+/* Card hover */
+.hover-shadow {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+}

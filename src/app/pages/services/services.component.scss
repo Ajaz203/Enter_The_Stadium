@@ -1,0 +1,46 @@
+.text-gold {
+  color: #FFD700 !important;
+}
+
+.border-gold {
+  border: 2px solid #FFD700 !important;
+}
+
+.hero-section {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-section {
+  position: relative;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.card-body h5 {
+  font-weight: 700;
+}
+
+.card-body p {
+  color: #ccc;
+}
+
+img {
+  object-fit: cover;
+}
+.ticket-img {
+  max-height: 300px; 
+  width: 100%;       
+  object-fit: cover;  
+  border-radius: 15px;
+}
+.image-card {
+  max-height: 200px; 
+  width: 100%;       
+  object-fit: contain;  
+  border-radius: 15px;
+}

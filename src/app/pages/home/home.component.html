@@ -1,0 +1,131 @@
+<!-- HERO SECTION -->
+<section class="hero-section position-relative d-flex align-items-center justify-content-center text-center text-white">
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content" data-aos="fade-up">
+    <h1 class="hero-title mb-3">
+      <span class="text-gold">Enter</span>TheStadium
+    </h1>
+    <p class="hero-subtitle mb-4">
+      Your gateway to the world's most thrilling <span class="text-gold">sports</span>, concerts & events.
+    </p>
+    <a routerLink="/contact" class="btn btn-gold px-5 py-3 fw-semibold border-gold">Get Tickets</a>
+  </div>
+
+  <!-- Floating decorative lights -->
+  <div class="floating-lights"></div>
+</section>
+
+
+<!-- FEATURED TICKETS -->
+<section class="tickets-section py-5 bg-dark text-white position-relative overflow-hidden">
+  <div class="container">
+    <h2 class="section-title text-gold text-center mb-5">Featured Tickets</h2>
+
+    <div class="carousel-wrapper position-relative">
+      <button class="carousel-btn left" (click)="scrollTickets('left')">&#10094;</button>
+
+      <div #ticketsSlider class="carousel d-flex">
+        <div class="ticket-card" *ngFor="let ticket of tickets">
+          <div class="ticket-img-wrapper">
+            <img [src]="ticket.image" [alt]="ticket.title" class="ticket-img">
+            <div class="ticket-overlay">
+              <h3 class="text-gold mb-2">{{ ticket.title }}</h3>
+              <p class="small text-light">{{ ticket.description }}</p>
+              <a [routerLink]="['/contact']" [queryParams]="{ ticket: ticket.title }" class="btn btn-gold btn-sm mt-2">Buy Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-btn right" (click)="scrollTickets('right')">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- WHY CHOOSE US -->
+<section class="why-section py-5 position-relative">
+  <div class="container position-relative">
+    <!-- Section Heading -->
+    <div class="text-center mb-5">
+      <h2 class="section-title text-gold mb-3">Why Choose Us</h2>
+      <p class="text-white-50 lead">We deliver excellence through innovation, precision, and a commitment to client satisfaction.</p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="row g-4 justify-content-center">
+      <div
+        class="col-md-4 col-sm-6"
+        *ngFor="let feature of features"
+      >
+        <div class="feature-card h-100 text-center p-4">
+          <div class="icon-wrapper mb-3 mx-auto">
+            <i [class]="feature.icon + ' fa-3x'"></i>
+          </div>
+          <h5 class="fw-semibold text-gold mb-2">{{ feature.title }}</h5>
+          <p class="text-white-50">{{ feature.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative background shapes -->
+  <div class="blur-circle circle1"></div>
+  <div class="blur-circle circle2"></div>
+</section>
+
+
+<section class="steps-section py-5 position-relative text-white">
+  <div class="container">
+    <!-- Section Heading -->
+    <div class="text-center mb-5">
+      <h2 class="section-title text-gold mb-3">How It Works</h2>
+      <p class="text-white-50 lead">A smooth and transparent process designed to deliver efficiency and excellence at every stage.</p>
+    </div>
+
+    <!-- Steps Timeline -->
+    <div class="steps-timeline">
+      <div class="step-item" *ngFor="let step of steps">
+        <div class="step-circle">
+          <span>{{ step.id }}</span>
+        </div>
+        <div class="step-content">
+          <h5 class="text-gold mb-2">{{ step.title }}</h5>
+          <p class="text-white-50">{{ step.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative elements -->
+  <div class="gradient-overlay"></div>
+</section>
+
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section py-5 bg-gradient-dark  position-relative overflow-hidden">
+  <div class="container">
+    <h2 class="section-title text-gold text-center mb-5">What Fans Say</h2>
+
+    <div class="carousel-wrapper position-relative">
+      <button class="carousel-btn left" (click)="scrollTestimonials('left')">&#10094;</button>
+
+      <div #testimonialsSlider class="carousel d-flex">
+        <div class="testimonial-card" *ngFor="let t of testimonials">
+          <div class="testimonial-content">
+            <p class="testimonial-feedback">“{{ t.feedback }}”</p>
+            <h6 class="testimonial-name text-gold mt-3">— {{ t.name }}</h6>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-btn right" (click)="scrollTestimonials('right')">&#10095;</button>
+    </div>
+  </div>
+</section>
+

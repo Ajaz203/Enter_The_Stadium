@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --gold-primary: #d4af37;
+  --gold-dark: #b8860b;
+  --gold-bg: #faf4e0;
+  --text-dark: #4b3b0a;
+}
+
+body {
+  background-color: var(--gold-bg);
+  color: var(--text-dark);
+  font-family: "Montserrat", sans-serif;
+}
+
+.btn-gold {
+  background-color: var(--gold-primary);
+  color: #fff;
+  border: none;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: var(--gold-dark);
+  }
+}

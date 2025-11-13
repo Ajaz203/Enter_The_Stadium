@@ -1,0 +1,85 @@
+:root {
+  --gold: #d4af37;
+  --gold-dark: #b8911f;
+  --bg-dark: #0b0b0b;
+  --text-light: #f8f9fa;
+}
+
+/* Navbar Styling */
+.custom-navbar {
+  background-color: var(--bg-dark);
+  padding: 0.8rem 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-navbar .navbar-brand {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.custom-navbar .navbar-brand:hover {
+  color: var(--gold);
+}
+
+.logo-text {
+  color: var(--text-light);
+}
+.highlight-text {
+  color: var(--gold);
+}
+
+/* Links */
+.nav-link {
+  color: var(--text-light) !important;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--gold) !important;
+}
+
+/* Button */
+.btn-golden {
+  background: var(--gold);
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-golden:hover {
+  background: var(--gold-dark);
+  color: #fff;
+}
+
+/* Page Container for Top Padding (since navbar is fixed) */
+.page-container {
+  padding-top: 80px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background-color: var(--bg-dark);
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+    padding: 1rem;
+  }
+
+  .nav-link {
+    text-align: center;
+    display: block;
+    padding: 0.6rem 0;
+  }
+
+  .btn-golden {
+    display: block;
+    margin: 0.5rem auto;
+    width: 80%;
+  }
+}

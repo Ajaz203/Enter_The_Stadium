@@ -1,0 +1,41 @@
+<header class="main-header sticky-top bg-dark-gold shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center py-3">
+    <!-- Logo -->
+    <a routerLink="/" class="d-flex align-items-center text-decoration-none h-100">
+      <img src="assets/logo1.png" alt="Logo" class="site-logo me-2" />
+      <span class="fw-bold text-gold fs-5 d-none d-sm-inline">EnterTheStadium</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="d-none d-md-flex align-items-center gap-5">
+      <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Home</a>
+      <a routerLink="/about" routerLinkActive="active-link" class="nav-link">About</a>
+      <a routerLink="/services" routerLinkActive="active-link" class="nav-link">Services</a>
+      <a routerLink="/tickets" routerLinkActive="active-link" class="nav-link">Tickets</a>
+      <a routerLink="/contact" routerLinkActive="active-link" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- CTA Button -->
+    <div class="d-none d-md-block">
+      <a routerLink="/contact" class="btn btn-gold-gradient text-dark fw-semibold shadow-sm">
+        Get Tickets
+      </a>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="d-md-none btn btn-outline-gold toggle-btn" type="button" (click)="toggleMenu()">
+      <i [ngClass]="menuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="menuOpen" class="mobile-menu bg-dark-gold">
+    <nav class="d-flex flex-column p-3 gap-2 text-center">
+      <a routerLink="/" class="nav-link" (click)="toggleMenu()">Home</a>
+      <a routerLink="/about" class="nav-link" (click)="toggleMenu()">About</a>
+      <a routerLink="/services" class="nav-link" (click)="toggleMenu()">Services</a>
+      <a routerLink="/tickets" class="nav-link" (click)="toggleMenu()">Tickets</a>
+      <a routerLink="/contact" class="nav-link" (click)="toggleMenu()">Contact</a>
+    </nav>
+  </div>
+</header>
