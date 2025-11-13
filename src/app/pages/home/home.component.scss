@@ -535,3 +535,64 @@ body {
     flex: 0 0 calc(100% - 10px);
   }
 }
+
+.accreditation-home-section {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  position: relative;
+
+  .accreditation-card {
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 20px;
+    padding: 30px 20px;
+    transition: all 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+
+    &:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+      border-color: rgba(255, 215, 0, 0.6);
+    }
+
+    .service-icon {
+      max-width: 100px;
+      max-height: 100px;
+      margin-bottom: 15px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4));
+    }
+
+    h5 {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .accreditation-card {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .accreditation-card {
+      padding: 25px 15px;
+
+      .service-icon {
+        max-width: 80px;
+        max-height: 80px;
+      }
+    }
+  }
+}
+

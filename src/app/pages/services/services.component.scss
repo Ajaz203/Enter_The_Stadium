@@ -11,36 +11,53 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+
+  .overlay {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.hero-accreditation-img {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 .service-section {
   position: relative;
 }
 
+.service-products {
+  .product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+    }
+  }
+}
+
 .card {
   border-radius: 15px;
 }
 
-.card-body h5 {
-  font-weight: 700;
-}
-
-.card-body p {
-  color: #ccc;
-}
-
-img {
-  object-fit: cover;
-}
-.ticket-img {
-  max-height: 300px; 
-  width: 100%;       
-  object-fit: cover;  
-  border-radius: 15px;
-}
 .image-card {
-  max-height: 200px; 
-  width: 100%;       
-  object-fit: contain;  
+  max-height: 200px;
+  width: 100%;
+  object-fit: contain;
   border-radius: 15px;
+}
+
+.ticket-img {
+  max-height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
 }

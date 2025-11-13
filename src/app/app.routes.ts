@@ -4,6 +4,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { TicketsComponent } from './pages/tickets/tickets.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -11,5 +12,7 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   {path:'services',component:ServicesComponent},
   {path:'tickets',component:TicketsComponent},
+  {path:'dashboard',component:DashboardComponent},
+
   { path: '**', redirectTo: '' },
 ];

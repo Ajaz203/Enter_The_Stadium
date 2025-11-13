@@ -1,1 +1,81 @@
-<p>dashboard works!</p>
+<div class="container py-5">
+  <h2 class="text-gold mb-4">Admin Dashboard - Tickets</h2>
+
+  <!-- Add Ticket -->
+  <div class="card mb-5 p-4 shadow-sm">
+    <h4 class="mb-3">Add New Ticket</h4>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Title" [(ngModel)]="newTicket.title">
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Description" [(ngModel)]="newTicket.description">
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Image URL" [(ngModel)]="newTicket.image">
+      </div>
+      <div class="col-12">
+        <button class="btn btn-gold text-dark mt-2" (click)="addTicket()">Add Ticket</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tickets Table -->
+  <div class="card p-4 shadow-sm">
+    <h4 class="mb-3">All Tickets</h4>
+    <table class="table table-dark table-striped align-middle">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets">
+          <td>{{ ticket.id }}</td>
+          <td>{{ ticket.title }}</td>
+          <td>{{ ticket.description }}</td>
+          <td>
+            <img [src]="ticket.image" alt="{{ticket.title}}" class="img-thumbnail" width="80">
+          </td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#editModal" (click)="selectTicket(ticket)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteTicket(ticket)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Ticket Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title" id="editModalLabel">Edit Ticket</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" (click)="cancelEdit()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <input type="text" class="form-control" placeholder="Title" [(ngModel)]="editingTicket!.title">
+            </div>
+            <div class="col-md-4">
+              <input type="text" class="form-control" placeholder="Description" [(ngModel)]="editingTicket!.description">
+            </div>
+            <div class="col-md-4">
+              <input type="text" class="form-control" placeholder="Image URL" [(ngModel)]="editingTicket!.image">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelEdit()">Cancel</button>
+          <button class="btn btn-success" data-bs-dismiss="modal" (click)="updateTicket()">Update Ticket</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
