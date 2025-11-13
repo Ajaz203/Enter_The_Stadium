@@ -1,10 +1,10 @@
 .hero-contact {
   position: relative;
   text-align: center;
-  color: #fff;
   display: flex;
   align-items: center;
   min-height: 40vh;
+  color: #fff;
 
   .overlay {
     position: absolute;
@@ -12,16 +12,35 @@
     background: rgba(0,0,0,0.6);
   }
 
-  h1, p {
-    z-index: 2;
-  }
+  h1 { color: #d4af37; z-index: 2; }
+  p { z-index: 2; font-size: 1.1rem; }
 }
 
-/* Card hover */
 .hover-shadow {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   &:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   }
+}
+
+.btn-gold {
+  background: #d4af37;
+  color: #000;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 0.65rem 1.8rem;
+  transition: all 0.3s;
+  &:hover {
+    background: #ffd54f;
+    color: #000;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-contact h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 576px) {
+  .hero-contact h1 { font-size: 2rem; }
 }
