@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router';
 interface Ticket {
   id?: number;
   title: string;
@@ -16,6 +16,8 @@ interface Ticket {
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+
+  constructor(private router: Router) {}
     tickets: Ticket[] = [
     { id: 1, title: 'FIFA World Cup Final', description: 'Watch the biggest football match live.', image: 'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=800&q=80' },
     { id: 2, title: 'Wimbledon Championship', description: 'Experience the world’s oldest tennis tournament.', image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80' }
@@ -54,4 +56,8 @@ export class DashboardComponent {
   cancelEdit() {
     this.editingTicket = null;
   }
+  logout() {
+  localStorage.removeItem("loggedIn");
+  this.router.navigate(['/']);
+}
 }
