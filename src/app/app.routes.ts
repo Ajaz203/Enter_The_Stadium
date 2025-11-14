@@ -6,6 +6,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import { TicketsComponent } from './pages/tickets/tickets.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './admin/login/login.component';
+import { NotFoundComponent } from './admin/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,5 +17,5 @@ export const routes: Routes = [
   {path:'dashboard',component:DashboardComponent},
   {path:'login',component:LoginComponent},
 
-  { path: '**', redirectTo: '' },
+  { path: '**', component: NotFoundComponent },
 ];
