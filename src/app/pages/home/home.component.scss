@@ -596,3 +596,23 @@ body {
   }
 }
 
+.service-box {
+  background: #111;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.service-box:hover {
+  transform: translateY(-5px);
+  border-color: #d4af37;
+}
+
+.highlight-list {
+  padding-left: 20px;
+}
+
+.highlight-list li {
+  margin-bottom: 6px;
+  opacity: 0.85;
+}

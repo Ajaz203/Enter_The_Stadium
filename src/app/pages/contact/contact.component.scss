@@ -44,3 +44,24 @@
 @media (max-width: 576px) {
   .hero-contact h1 { font-size: 2rem; }
 }
+.custom-dropdown {
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.custom-dropdown optgroup {
+  font-weight: 600;
+  color: #444;
+  padding-top: 8px;
+}
+
+.custom-dropdown option {
+  padding: 6px;
+}
+
+.custom-dropdown option[disabled] {
+  color: #888;
+  font-style: italic;
+}

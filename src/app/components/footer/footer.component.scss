@@ -27,7 +27,7 @@
   margin-bottom: 8px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
 }
 
 .social-icons a {
@@ -74,5 +74,9 @@
     width: 30px;
     height: 30px;
     margin-right: 8px;
+  }
+  .footer-contact li
+  {
+    justify-content: center;
   }
 }
