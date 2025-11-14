@@ -1,15 +1,16 @@
 <!-- Hero Section -->
 <section class="hero-section text-center text-white py-5" style="background: url('assets/2.jpeg') center/cover no-repeat;">
-  <div class="overlay" style="background: rgba(0,0,0,0.6); padding: 80px 0;">
+  <div class="overlay" style="background: rgba(0,0,0,0.6); padding: 100px 0;">
     <div class="container">
       <h1 class="display-4 fw-bold text-gold">Our Services</h1>
-      <p class="lead text-light mt-3">Delivering world-class accreditation and ticketing solutions for unforgettable experiences.</p>
+      <p class="lead text-light mt-3">Delivering world-class accreditation, RFID, and embedded solutions for secure and efficient operations.</p>
+      <a href="#service-products" class="btn btn-gold mt-4">Explore Services</a>
     </div>
   </div>
 </section>
 
 <!-- Accreditation Highlight Section -->
-<section class="service-section py-5 bg-gradient-dark text-white">
+<section class="service-section py-5 bg-gradient-dark text-white" >
   <div class="container">
     <div class="row align-items-center flex-column-reverse flex-md-row">
       <div class="col-md-6">
@@ -18,47 +19,189 @@
           With over 20 years of experience in event security and access control, we provide a 360° accreditation solution. Combining advanced software with robust hardware, we ensure your event runs smoothly, securely, and professionally.
         </p>
         <p class="text-light">
-          Our solutions cover software vetting, plastic cards, lanyards, wristbands, and more — giving your attendees a seamless and safe experience.
+          Our solutions cover software vetting, plastic cards (PVC, RFID, NFC), lanyards, wristbands, and access control software — giving your attendees a seamless and safe experience.
         </p>
       </div>
       <div class="col-md-6 text-center">
-        <img src="assets/2.1.webp" alt="Accreditation" class="img-fluid rounded shadow hero-accreditation-img">
+        <img src="assets/2.1.webp" alt="Accreditation" class="img-fluid rounded shadow hero-accreditation-img animate__fadeInRight">
       </div>
     </div>
   </div>
 </section>
 
 <!-- Accreditation Products Grid -->
-<section class="service-products py-5 bg-dark text-white">
+<section id="service-products" class="service-products py-5 bg-dark text-white">
   <div class="container">
     <h2 class="text-gold fw-bold text-center mb-5">Our Products & Services</h2>
-    <div class="row g-4">
-      <div class="col-md-4" *ngFor="let product of accreditationProducts">
-        <div class="card border-gold h-100 bg-dark text-white shadow product-card">
-          <div class="card-body text-center">
-            <img [src]="product.image" [alt]="product.title" class="img-fluid image-card mb-3">
-            <h5 class="card-title text-gold">{{ product.title }}</h5>
-            <p class="card-text">{{ product.description }}</p>
+
+    <div class="marquee">
+      <div class="marquee-track">
+        <div class="card-wrapper" *ngFor="let product of accreditationProducts">
+          <div class="card border-gold h-100 bg-dark text-white shadow product-card text-center">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="product-img-wrapper mb-3">
+                <img [src]="product.image" [alt]="product.title" class="img-fluid image-card rounded">
+              </div>
+              <h5 class="card-title text-gold mb-2">{{ product.title }}</h5>
+              <p class="card-text text-light">{{ product.description }}</p>
+            </div>
           </div>
+        </div>
+
+        <!-- Duplicate cards for continuous loop -->
+        <div class="card-wrapper" *ngFor="let product of accreditationProducts">
+          <div class="card border-gold h-100 bg-dark text-white shadow product-card text-center">
+            <div class="card-body d-flex flex-column align-items-center">
+              <div class="product-img-wrapper mb-3">
+                <img [src]="product.image" [alt]="product.title" class="img-fluid image-card rounded">
+              </div>
+              <h5 class="card-title text-gold mb-2">{{ product.title }}</h5>
+              <p class="card-text text-light">{{ product.description }}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Ticketing Section -->
+<section class="service-section py-5" style="background: #111;">
+  <div class="container">
+    <div class="row align-items-center flex-column-reverse flex-md-row">
+      <div class="col-md-6 order-md-2">
+        <h2 class="text-gold fw-bold mb-3 mt-3">Ticketing Services</h2>
+        <p class="text-light">
+          We provide end-to-end ticketing packages for international sports events, concerts, and shows. Our solutions ensure your audience enjoys a seamless booking experience and an unforgettable event.
+        </p>
+        <p class="text-light">Book your tickets effortlessly and enjoy the experience worldwide.</p>
+        <a href="#contact" class="btn btn-gold mt-3">Get Started</a>
+      </div>
+      <div class="col-md-6 text-center order-md-1">
+        <img src="assets/1.webp" alt="Ticketing" class="img-fluid rounded shadow ticket-img animate__fadeInLeft">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RFID Cards & Tags Section -->
+<section class="rfid-section py-5 bg-dark text-white">
+  <div class="container">
+    <h2 class="text-gold text-center mb-5">RFID Cards & Tags</h2>
+
+    <div class="row g-4">
+      <!-- RFID Cards Card -->
+      <div class="col-md-6">
+        <div class="rfid-card p-4 rounded shadow bg-gradient-dark">
+          <div class="d-flex align-items-center mb-3">
+            <i class="fas fa-id-card text-gold fs-2 me-3"></i>
+            <h4 class="text-gold fw-semibold mb-0">Types of RFID Cards</h4>
+          </div>
+          <ul class="text-light list-unstyled mb-0">
+            <li>LF (Low Frequency) 125 kHz – Basic access</li>
+            <li>HF (High Frequency) 13.56 MHz – MIFARE®, iCLASS®</li>
+            <li>UHF (Ultra High Frequency) – Long-range applications</li>
+            <li>NFC-enabled cards – Smartphone interactions</li>
+            <li>Security ID cards – Holograms, UV, microtext</li>
+            <li>Combo cards – HF+LF, UHF+LF, UHF+HF</li>
+            <li>Specialty cards – Wooden, LED, Metal</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RFID Tags Card -->
+      <div class="col-md-6">
+        <div class="rfid-card p-4 rounded shadow bg-gradient-dark">
+          <div class="d-flex align-items-center mb-3">
+            <i class="fas fa-tags text-gold fs-2 me-3"></i>
+            <h4 class="text-gold fw-semibold mb-0">RFID Tags</h4>
+          </div>
+          <ul class="text-light list-unstyled mb-0">
+            <li>Passive: LF, HF, UHF, NFC</li>
+            <li>Specialty: LED, High Temp, Anti-metal, Flexible</li>
+            <li>Full-color artwork, holograms, UV ink, microtext for security</li>
+            <li>Custom form factors: key fobs, wristbands</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Ticketing Section -->
-<section class="service-section py-5" style="background: #111;">
+
+<!-- Embedded Products Section -->
+<section class="embedded-section py-5 bg-gradient-dark text-white">
   <div class="container">
-    <div class="row align-items-center flex-column-reverse flex-md-row">
+    <h2 class="text-gold text-center mb-5">Embedded Products</h2>
+    <p class="text-center text-light mb-5">
+      We design and manufacture smart embedded products to bring intelligence to everyday environments.
+    </p>
+    <div class="row g-4">
       <div class="col-md-6">
-        <h2 class="text-gold fw-bold mb-3 mt-3">Ticketing Services</h2>
-        <p class="text-light">
-          We provide end-to-end ticketing packages for international sports events, concerts, and shows. Our solutions ensure your audience enjoys a seamless booking experience and an unforgettable event.
-        </p>
-        <p class="text-light">Book your tickets effortlessly and enjoy the experience worldwide.</p>
+        <h4 class="text-gold fw-semibold mb-3">Smart Lockers</h4>
+        <p class="text-light">Electronic smart lockers for mobiles, laptops, and documents with RFID, PIN, BLE app unlocking options.</p>
       </div>
-      <div class="col-md-6 text-center">
-        <img src="assets/1.webp" alt="Ticketing" class="img-fluid rounded shadow ticket-img">
+      <div class="col-md-6">
+        <h4 class="text-gold fw-semibold mb-3">Smart Vending Machines</h4>
+        <p class="text-light">RFID/NFC payment integration, cloud stock management, BLE-based user interaction, and touchscreen interfaces.</p>
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-gold fw-semibold mb-3">BLE Feedback Systems & Trackers</h4>
+        <p class="text-light">Real-time asset and personnel tracking, configurable alerts, API integration with enterprise systems.</p>
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-gold fw-semibold mb-3">IoT Water ATMs</h4>
+        <p class="text-light">Smart, solar-powered, and IoT-enabled units for water dispensing, real-time monitoring, and mobile wallet payments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Applications / Use Cases -->
+<section class="usecases-section bg-dark py-5">
+  <div class="container">
+    <h2 class="text-gold text-center mb-5">Applications & Use Cases</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card bg-dark shadow h-100 p-3 text-center">
+          <h5 class="text-gold fw-semibold mb-3">Corporate Offices</h5>
+          <p class="text-light">Employee access and logical security management.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark shadow h-100 p-3 text-center">
+          <h5 class="text-gold fw-semibold mb-3">Government Buildings</h5>
+          <p class="text-light">High-security access and compliance.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark shadow h-100 p-3 text-center">
+          <h5 class="text-gold fw-semibold mb-3">Data Centers</h5>
+          <p class="text-light">Multi-factor physical and logical access control.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark shadow h-100 p-3 text-center">
+          <h5 class="text-gold fw-semibold mb-3">Educational Campuses</h5>
+          <p class="text-light">Student ID, access, and payment integration.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark shadow h-100 p-3 text-center">
+          <h5 class="text-gold fw-semibold mb-3">Hospitals</h5>
+          <p class="text-light">Staff access and patient safety management.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark shadow h-100 p-3 text-center">
+          <h5 class="text-gold fw-semibold mb-3">Entertainment & Transport</h5>
+          <p class="text-light">Ticket validation, platform entry, VIP & event staff access.</p>
+        </div>
       </div>
     </div>
   </div>

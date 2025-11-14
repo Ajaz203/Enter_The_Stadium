@@ -1,63 +1,248 @@
-.text-gold {
-  color: #FFD700 !important;
-}
+.text-gold { color: #FFD700 !important; }
 
-.border-gold {
-  border: 2px solid #FFD700 !important;
-}
+.border-gold { border: 2px solid #FFD700 !important; }
 
 .hero-section {
-  min-height: 50vh;
+  min-height: 55vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-
-  .overlay {
-    width: 100%;
-    height: 100%;
-  }
+  .overlay { width: 100%; height: 100%; }
 }
 
-.hero-accreditation-img {
-  max-height: 400px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 15px;
-}
+.hero-accreditation-img,
+.ticket-img { max-height: 400px; width: 100%; object-fit: cover; border-radius: 15px; }
 
-.service-section {
-  position: relative;
-}
+.service-section, .rfid-section, .embedded-section { position: relative; }
 
 .service-products {
   .product-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
-    }
+    &:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3); }
   }
 }
 
-.card {
-  border-radius: 15px;
-}
+.card { border-radius: 15px; }
 
-.image-card {
-  max-height: 200px;
-  width: 100%;
-  object-fit: contain;
-  border-radius: 15px;
-}
+.image-card { max-height: 200px; width: 100%; object-fit: contain; border-radius: 15px; }
 
-.ticket-img {
-  max-height: 300px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 15px;
-}
+.bg-gradient-dark { background: linear-gradient(135deg, #0a0a0a, #1a1a1a); }
 
-.bg-gradient-dark {
-  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+.btn-gold { background: #FFD700; color: #111; font-weight: 600; border-radius: 50px; padding: 10px 30px; transition: 0.3s; &:hover { background: #e6c200; color: #111; } }
+.rfid-section {
+  h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+
+  .rfid-card {
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    border-radius: 15px;
+    border: 2px solid rgba(255,215,0,0.2);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    h4 {
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      i { font-size: 2rem; margin-right: 12px; }
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: #FFD700;
+      }
+    }
+  }
+}
+.service-products {
+  h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+
+  .product-card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+    }
+
+    .product-img-wrapper {
+      width: 120px;
+      height: 120px;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-bottom: 15px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    h5 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    p { font-size: 0.95rem; line-height: 1.5; }
+  }
+
+  @media (max-width: 1200px) {
+    .col-xl-3 { flex: 0 0 45%; max-width: 45%; } /* 2 cards per row */
+  }
+
+  @media (max-width: 768px) {
+    .col-lg-4, .col-xl-3 { flex: 0 0 100%; max-width: 100%; } /* 1 card per row */
+  }
+}
+// .cards-marquee {
+//   .marquee {
+//     overflow: hidden;
+//     position: relative;
+//   }
+
+//   .marquee-track {
+//     display: flex;
+//     width: max-content;
+//     animation: scroll 20s linear infinite;
+//   }
+
+//   .card {
+//     background: #111;
+//     border: 2px solid #FFD700;
+//     border-radius: 15px;
+//     padding: 1rem;
+//     margin-right: 1rem;
+//     min-width: 220px;
+//     text-align: center;
+
+//     img {
+//       width: 100px;
+//       height: 100px;
+//       object-fit: contain;
+//       margin-bottom: 0.5rem;
+//     }
+//   }
+
+//   @keyframes scroll {
+//     0% { transform: translateX(0); }
+//     100% { transform: translateX(-50%); } /* scroll half the track width */
+//   }
+// }
+// .service-products {
+//   h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+
+//   .product-card {
+//     border-radius: 15px;
+//     transition: transform 0.3s ease, box-shadow 0.3s ease;
+//     &:hover {
+//       transform: translateY(-6px);
+//       box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+//     }
+
+//     .product-img-wrapper {
+//       width: 120px;
+//       height: 120px;
+//       overflow: hidden;
+//       border-radius: 15px;
+//       margin-bottom: 15px;
+
+//       img {
+//         width: 100%;
+//         height: 100%;
+//         object-fit: contain;
+//       }
+//     }
+
+//     h5 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+//     p { font-size: 0.95rem; line-height: 1.5; }
+//   }
+
+//   @media (max-width: 1200px) {
+//     .col-xl-3 { flex: 0 0 45%; max-width: 45%; } /* 2 cards per row */
+//   }
+
+//   @media (max-width: 768px) {
+//     .col-lg-4, .col-xl-3 { flex: 0 0 100%; max-width: 100%; } /* 1 card per row */
+//   }
+// }
+.service-products {
+  h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+
+  .marquee {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: scroll 15s linear infinite;
+    flex-wrap: nowrap; /* prevent wrapping */
+  }
+
+  .card-wrapper {
+    flex: 0 0 auto;
+    margin-right: 2rem;
+    width: 250px; /* default card width */
+  }
+
+  .product-card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
+    }
+
+    .product-img-wrapper {
+      width: 120px;
+      height: 120px;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-bottom: 15px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    h5 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    p { font-size: 0.95rem; line-height: 1.5; }
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 1200px) {
+    .card-wrapper { width: 220px; margin-right: 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    .marquee-track {
+      animation: scroll 10s linear infinite; /* slower scroll for mobile */
+    }
+
+    .card-wrapper { 
+      width: 80%;      /* full width cards for mobile */
+      margin-right: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card-wrapper {
+      width: 95%; /* almost full width on very small devices */
+      margin-right: 0.5rem;
+    }
+  }
 }
