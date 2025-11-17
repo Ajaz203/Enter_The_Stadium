@@ -21,3 +21,29 @@ body {
     background-color: var(--gold-dark);
   }
 }
+/* Marquee container */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+ 
+}
+
+/* Track animation */
+.marquee-track {
+ 
+  animation: marqueeAnimation 18s linear infinite;
+}
+
+/* Keyframes MUST be global */
+@keyframes marqueeAnimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
