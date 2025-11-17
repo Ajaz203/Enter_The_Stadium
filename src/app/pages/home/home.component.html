@@ -1,12 +1,14 @@
 <!-- HERO SECTION -->
-<section class="hero-section position-relative text-center text-white d-flex align-items-center justify-content-center" style="background: url('assets/2.jpeg') center/cover no-repeat;">
+<section class="hero-section position-relative text-center text-white d-flex align-items-center justify-content-center"
+  style="background: url('https://images.unsplash.com/photo-1508766917616-d22f3f1eea14?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;">
   <div class="hero-overlay" style="background: rgba(0,0,0,0.65); padding: 120px 0;">
     <div class="container" data-aos="fade-up">
       <h1 class="display-3 fw-bold mb-3">
         <span class="text-gold">ENTER</span> THE STADIUM
       </h1>
       <p class="lead mb-4">
-        A global leader in <span class="text-gold">RFID cards, Security ID cards, NFC solutions</span> and integrated access technologies.
+        A global leader in <span class="text-gold">RFID cards, Security ID cards, NFC solutions</span> and integrated
+        access technologies.
         Empowering secure access for people, places & data.
       </p>
       <a routerLink="/about" class="btn btn-gold px-5 py-3 fw-semibold border-gold">About Us</a>
@@ -14,32 +16,22 @@
   </div>
 </section>
 
- <section class="home-services py-5 bg-dark text-white">
+<section class="home-services py-5 bg-dark text-white">
   <div class="container">
     <h2 class="text-center text-gold fw-bold mb-4">Our Key Services</h2>
     <p class="text-center mb-5 opacity-75">
-      World-class solutions—crafted with precision, trust, and 20+ years of expertise in ticketing, accreditation, RFID manufacturing, security, and software.
+      World-class solutions—crafted with precision, trust, and 20+ years of expertise in ticketing, accreditation, RFID
+      manufacturing, security, and software.
     </p>
 
     <div class="row g-4 justify-content-center">
 
-      <!-- Ticketing -->
-      <div class="col-md-6 col-lg-4">
-        <div class="service-card h-100 text-center p-4">
-          <div class="service-icon">🎟️</div>
-          <h5 class="text-gold fw-bold mb-3">Ticketing</h5>
-          <p>Premium access to global sports, entertainment shows, and arena events—delivered with a seamless booking experience.</p>
-          <ul class="text-white-50 text-start mt-2">
-            <li>International sports tickets</li>
-            <li>Concerts & arena shows</li>
-            <li>End-to-end travel + event packages</li>
-          </ul>
-        </div>
-      </div>
-
       <!-- Accreditation -->
       <div class="col-md-6 col-lg-4">
-        <div class="service-card h-100 text-center p-4">
+        <div class="service-card h-100 text-center p-4"
+             [routerLink]="['/services']"
+             fragment="accreditation"
+             style="cursor: pointer;">
           <div class="service-icon">🛂</div>
           <h5 class="text-gold fw-bold mb-3">Accreditation</h5>
           <p>Advanced accreditation systems engineered for enhanced event security, identity management, and access control.</p>
@@ -52,54 +44,29 @@
         </div>
       </div>
 
-      <!-- RFID Manufacturing -->
+      <!-- Ticketing -->
       <div class="col-md-6 col-lg-4">
-        <div class="service-card h-100 text-center p-4">
-          <div class="service-icon">🔧</div>
-          <h5 class="text-gold fw-bold mb-3">RFID Manufacturing</h5>
-          <p>High-precision RFID card manufacturing with LF, HF, UHF, NFC & combo chip support.</p>
+        <div class="service-card h-100 text-center p-4"
+             [routerLink]="['/services']"
+             fragment="ticketing"
+             style="cursor: pointer;">
+          <div class="service-icon">🎟️</div>
+          <h5 class="text-gold fw-bold mb-3">Ticketing</h5>
+          <p>Premium access to global sports, entertainment shows, and arena events—delivered with a seamless booking experience.</p>
           <ul class="text-white-50 text-start mt-2">
-            <li>Chip embedding with secure processes</li>
-            <li>Multi-frequency RFID card production</li>
-            <li>Custom full-color printing</li>
-            <li>Encoding & personalization</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Security ID & Access -->
-      <div class="col-md-6 col-lg-4">
-        <div class="service-card h-100 text-center p-4">
-          <div class="service-icon">🛡️</div>
-          <h5 class="text-gold fw-bold mb-3">Security ID & Access</h5>
-          <p>Complete identity & access ecosystem for secure places, systems, and data.</p>
-          <ul class="text-white-50 text-start mt-2">
-            <li>Security ID cards with holograms, UV, microtext</li>
-            <li>RFID/NFC-based access cards & controllers</li>
-            <li>Logical access + SSO Integration</li>
-            <li>Accessories, EM locks, exit readers</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Embedded Products -->
-      <div class="col-md-6 col-lg-4">
-        <div class="service-card h-100 text-center p-4">
-          <div class="service-icon">📦</div>
-          <h5 class="text-gold fw-bold mb-3">Embedded Products</h5>
-          <p>Smart electronic systems designed for real-world automation & intelligence.</p>
-          <ul class="text-white-50 text-start mt-2">
-            <li>Smart Lockers (RFID / PIN / QR)</li>
-            <li>Smart Vending Machines</li>
-            <li>BLE Trackers & Feedback Systems</li>
-            <li>IoT Water ATMs (Solar-powered)</li>
+            <li>International sports tickets</li>
+            <li>Concerts & arena shows</li>
+            <li>End-to-end travel + event packages</li>
           </ul>
         </div>
       </div>
 
       <!-- Software Solutions -->
       <div class="col-md-6 col-lg-4">
-        <div class="service-card h-100 text-center p-4">
+        <div class="service-card h-100 text-center p-4"
+             [routerLink]="['/services']"
+             fragment="software-solutions"
+             style="cursor: pointer;">
           <div class="service-icon">💻</div>
           <h5 class="text-gold fw-bold mb-3">Software Solutions</h5>
           <p>Enterprise platforms enabling smarter and more secure operations.</p>
@@ -120,6 +87,7 @@
   </div>
 </section>
 
+
 <!-- FEATURED TICKETS — unchanged -->
 <section class="tickets-section py-5 bg-dark text-white position-relative">
   <div class="container">
@@ -133,7 +101,8 @@
             <div class="ticket-overlay">
               <h3 class="text-gold mb-2">{{ ticket.title }}</h3>
               <p class="text-light small">{{ ticket.description }}</p>
-              <a [routerLink]="['/contact']" [queryParams]="{ ticket: ticket.title }" class="btn btn-gold btn-sm mt-2">Get Enquiry</a>
+              <a [routerLink]="['/contact']" [queryParams]="{ ticket: ticket.title }"
+                class="btn btn-gold btn-sm mt-2">Get Enquiry</a>
             </div>
           </div>
         </div>

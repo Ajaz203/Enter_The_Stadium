@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 interface Product {
   title: string;
   description: string;
@@ -22,9 +24,17 @@ interface IdCardType {
 })
 export class ServicesComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private viewportScroller: ViewportScroller, private route: ActivatedRoute) { }
 
-
+ngAfterViewInit() {
+  this.route.fragment.subscribe(fragment => {
+    if (fragment) {
+      setTimeout(() => {
+        this.viewportScroller.scrollToAnchor(fragment);
+      }, 200);
+    }
+  });
+}
   accreditationProducts: Product[] = [
     { title: 'Plastic Cards', description: 'High-quality Teflon or PVC cards, with barcodes, RFID, and NFC options.', image: 'assets/3.3.avif' },
     { title: 'Lanyards', description: '12–40mm width, single/multicolored, matching your event branding.', image: 'assets/4.webp' },
