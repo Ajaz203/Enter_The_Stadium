@@ -1,3 +1,77 @@
+.about-image-wrapper {
+  perspective: 1500px;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-3d-cube {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+}
+
+.spin-cube {
+  animation: spin 15s linear infinite;
+}
+
+.tech-3d-cube .face {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(135deg, #f5c542, #111);
+  border: 2px solid #f5c542;
+  color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-radius: 15px;
+}
+
+/* Position each cube face */
+.tech-3d-cube .front { transform: translateZ(125px); }
+.tech-3d-cube .back { transform: rotateY(180deg) translateZ(125px); }
+.tech-3d-cube .left { transform: rotateY(-90deg) translateZ(125px); }
+.tech-3d-cube .right { transform: rotateY(90deg) translateZ(125px); }
+.tech-3d-cube .top { transform: rotateX(90deg) translateZ(125px); }
+.tech-3d-cube .bottom { transform: rotateX(-90deg) translateZ(125px); }
+
+/* Continuous Spin Animation */
+@keyframes spin {
+  0% {
+    transform: rotateX(-20deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+}
+
+
+/* Banner image */
+.about-image-wrapper {
+  perspective: 1200px;
+  margin-top: 1rem;
+}
+
+.about-img {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(245,197,66,0.3);
+  transition: transform 0.8s ease, box-shadow 0.8s ease;
+}
+
+.about-img:hover {
+  transform: rotateY(10deg) rotateX(5deg) scale(1.07);
+  box-shadow: 0 30px 70px rgba(245,197,66,0.5);
+}
+
+
 .about-us-section {
   position: relative;
   padding: 8rem 0;
@@ -38,7 +112,7 @@
     );
     transform: translateX(-100%);
     z-index: 2;
-    animation: shimmer 20s ease-in-out infinite;
+    animation: shimmer 30s ease-in-out infinite;
   }
 
   @keyframes move-lines {

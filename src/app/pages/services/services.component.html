@@ -1,33 +1,121 @@
 <!-- Hero Section -->
-<section class="hero-section text-center text-white py-5" style="background: url('assets/2.jpeg') center/cover no-repeat;">
+<section class="hero-section text-center text-white py-5"
+  style="background: url('assets/2.jpeg') center/cover no-repeat;">
   <div class="overlay" style="background: rgba(0,0,0,0.6); padding: 100px 0;">
     <div class="container">
       <h1 class="display-4 fw-bold text-gold">Our Services</h1>
-      <p class="lead text-light mt-3">Delivering world-class accreditation, RFID, and embedded solutions for secure and efficient operations.</p>
+      <p class="lead text-light mt-3">Delivering world-class accreditation, RFID, and embedded solutions for secure and
+        efficient operations.</p>
       <a href="#service-products" class="btn btn-gold mt-4">Explore Services</a>
     </div>
   </div>
 </section>
 
-<!-- Accreditation Highlight Section -->
-<section class="service-section py-5 bg-gradient-dark text-white" >
+<section class="accreditation-section py-5 text-white">
   <div class="container">
-    <div class="row align-items-center flex-column-reverse flex-md-row">
+   <div class="row align-items-center flex-column-reverse flex-md-row mb-5">
       <div class="col-md-6">
         <h2 class="text-gold fw-bold mb-3 mt-3">Accreditation Solutions</h2>
         <p class="text-light">
-          With over 20 years of experience in event security and access control, we provide a 360° accreditation solution. Combining advanced software with robust hardware, we ensure your event runs smoothly, securely, and professionally.
+          With over 20 years of experience in event security and access control, we provide a 360° accreditation
+          solution. Combining advanced software with robust hardware, we ensure your event runs smoothly, securely,
+          and professionally.
         </p>
         <p class="text-light">
-          Our solutions cover software vetting, plastic cards (PVC, RFID, NFC), lanyards, wristbands, and access control software — giving your attendees a seamless and safe experience.
+          Our solutions cover software vetting, plastic cards (PVC, RFID, NFC), lanyards, wristbands, and access
+          control software — giving your attendees a seamless and safe experience.
         </p>
       </div>
       <div class="col-md-6 text-center">
-        <img src="assets/2.1.webp" alt="Accreditation" class="img-fluid rounded shadow hero-accreditation-img animate__fadeInRight">
+        <img src="assets/2.1.webp" alt="Accreditation"
+          class="img-fluid rounded shadow hero-accreditation-img animate__fadeInRight">
       </div>
     </div>
+
+    <h2 class="text-center text-gold fw-bold mb-4">Accreditation</h2>
+
+    <!-- TABS -->
+    <ul class="nav nav-tabs justify-content-center border-gold mb-4">
+
+      <li class="nav-item">
+        <button class="nav-link" [class.active]="activeTab === 'idcards'" (click)="activeTab = 'idcards'">
+          ID Card Types
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" [class.active]="activeTab === 'pvc'" (click)="activeTab = 'pvc'">
+          PVC Cards
+        </button>
+      </li>
+
+    </ul>
+
+    <!-- TAB CONTENT -->
+    <div class="tab-content">
+
+      <!-- PVC CARDS TAB -->
+      <div class="row g-4" *ngIf="activeTab === 'pvc'">
+
+        <div class="col-md-6 col-lg-4" *ngFor="let card of pvcCards">
+          <div class="card bg-dark border-gold text-white shadow p-3 h-100 d-flex flex-column">
+
+            <img [src]="card.images[card.activeImage]" class="img-fluid rounded mb-3 fixed-img" alt="{{ card.title }}">
+
+            <div class="d-flex gap-2 mb-2">
+              <img *ngFor="let img of card.images; let i = index" [src]="img" class="thumb-img"
+                [class.active-thumb]="card.activeImage === i" (click)="card.activeImage = i" alt="thumb">
+            </div>
+
+            <h5 class="text-gold fw-semibold">{{ card.title }}</h5>
+
+            <p class="text-light small mt-2">{{ card.description }}</p>
+
+            <ul class="text-light small mt-2">
+              <li *ngFor="let s of card.specs">{{ s }}</li>
+            </ul>
+
+            <a routerLink="/contact" class="btn btn-gold mt-auto px-4">
+              Request a Call Back
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ID CARD TYPES TAB -->
+      <div class="row g-4" *ngIf="activeTab === 'idcards'">
+
+        <div class="col-md-6 col-lg-4" *ngFor="let item of idCardTypes">
+          <div class="card bg-dark border-gold text-white shadow p-3 h-100 d-flex flex-column">
+
+            <img [src]="item.images[item.activeImage ?? 0]" class="img-fluid rounded mb-3 fixed-img"
+              alt="{{ item.title }}"> 
+
+
+            <div class="d-flex gap-2 mb-2">
+              <img *ngFor="let img of item.images; let j = index" [src]="img" class="thumb-img"
+                [class.active-thumb]="item.activeImage === j" (click)="item.activeImage = j" alt="thumb">
+            </div>
+
+            <h5 class="text-gold fw-semibold">{{ item.title }}</h5>
+
+            <p class="text-light small mt-2">{{ item.description }}</p>
+
+            <ul class="text-light small mt-2">
+              <li *ngFor="let s of item.specs">{{ s }}</li>
+            </ul>
+
+            <a routerLink="/contact" class="btn btn-gold mt-auto px-4">
+              Request a Call Back
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
+
 
 <!-- Accreditation Products Grid -->
 <section id="service-products" class="service-products py-5 bg-dark text-white">
@@ -77,7 +165,8 @@
       <div class="col-md-6 order-md-2">
         <h2 class="text-gold fw-bold mb-3 mt-3">Ticketing Services</h2>
         <p class="text-light">
-          We provide end-to-end ticketing packages for international sports events, concerts, and shows. Our solutions ensure your audience enjoys a seamless booking experience and an unforgettable event.
+          We provide end-to-end ticketing packages for international sports events, concerts, and shows. Our solutions
+          ensure your audience enjoys a seamless booking experience and an unforgettable event.
         </p>
         <p class="text-light">Book your tickets effortlessly and enjoy the experience worldwide.</p>
         <a href="#contact" class="btn btn-gold mt-3">Get Started</a>
@@ -88,6 +177,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- RFID Cards & Tags Section -->
 <section class="rfid-section py-5 bg-dark text-white">
@@ -144,19 +234,23 @@
     <div class="row g-4">
       <div class="col-md-6">
         <h4 class="text-gold fw-semibold mb-3">Smart Lockers</h4>
-        <p class="text-light">Electronic smart lockers for mobiles, laptops, and documents with RFID, PIN, BLE app unlocking options.</p>
+        <p class="text-light">Electronic smart lockers for mobiles, laptops, and documents with RFID, PIN, BLE app
+          unlocking options.</p>
       </div>
       <div class="col-md-6">
         <h4 class="text-gold fw-semibold mb-3">Smart Vending Machines</h4>
-        <p class="text-light">RFID/NFC payment integration, cloud stock management, BLE-based user interaction, and touchscreen interfaces.</p>
+        <p class="text-light">RFID/NFC payment integration, cloud stock management, BLE-based user interaction, and
+          touchscreen interfaces.</p>
       </div>
       <div class="col-md-6">
         <h4 class="text-gold fw-semibold mb-3">BLE Feedback Systems & Trackers</h4>
-        <p class="text-light">Real-time asset and personnel tracking, configurable alerts, API integration with enterprise systems.</p>
+        <p class="text-light">Real-time asset and personnel tracking, configurable alerts, API integration with
+          enterprise systems.</p>
       </div>
       <div class="col-md-6">
         <h4 class="text-gold fw-semibold mb-3">IoT Water ATMs</h4>
-        <p class="text-light">Smart, solar-powered, and IoT-enabled units for water dispensing, real-time monitoring, and mobile wallet payments.</p>
+        <p class="text-light">Smart, solar-powered, and IoT-enabled units for water dispensing, real-time monitoring,
+          and mobile wallet payments.</p>
       </div>
     </div>
   </div>
