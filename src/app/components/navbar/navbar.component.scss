@@ -1,81 +1,138 @@
+.btn-gold {
+  background: #f5c542;
+  color: #000;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
 .main-header {
+  height: 90px;
+  display: flex;
+  align-items: center;
   background: #0d0d0d;
   border-bottom: 1px solid rgba(255, 215, 0, 0.15);
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 999;
+}
 
-  .site-logo {
-    height: 45px;
-    transition: transform 0.3s ease;
-    &:hover {
-      transform: scale(1.05);
-    }
+/* ---- LOGO ---- */
+.main-header .site-logo {
+  height: 110px;     
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.main-header .site-logo:hover {
+  transform: scale(1.05);
+}
+
+/* ---- NAV LINKS ---- */
+.main-header .nav-link {
+  color: #fff;
+  position: relative;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.main-header .nav-link:hover {
+  color: #ffd700;
+}
+
+.main-header .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, #ffd700, #f6c90e);
+  transition: transform 0.3s ease;
+}
+
+.main-header .nav-link:hover::after,
+.main-header .nav-link.active-link::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ---- BUTTONS ---- */
+.main-header .btn-gold-gradient {
+  background: linear-gradient(90deg, #ffd700, #f6c90e);
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-header .btn-gold-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.main-header .btn-outline-gold {
+  color: #f5c542;
+  border: 1px solid #f5c542;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.main-header .btn-outline-gold:hover {
+  background: #f5c542;
+  color: #000;
+}
+
+/* ---- MOBILE MENU ---- */
+.mobile-menu {
+  animation: slideDown 0.4s ease;
+}
+
+.mobile-menu .nav-link {
+  color: #fff;
+  padding: 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-transform: uppercase;
+}
+
+.mobile-menu .nav-link:hover {
+  color: #ffd700;
+}
+
+/* ---- RESPONSIVE FIXES ---- */
+@media (max-width: 992px) {
+  .main-header {
+    height: 80px;   
+      display: block !important;        /* smaller header */
   }
 
-  .nav-link {
-    color: #fff;
-    position: relative;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
+  .main-header .site-logo {
+    height: 70px;          /* responsive logo */
+  }
+}
 
-    &:hover {
-      color: #ffd700;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%) scaleX(0);
-      width: 50%;
-      height: 2px;
-      background: linear-gradient(90deg, #ffd700, #f6c90e);
-      transition: transform 0.3s ease;
-    }
-
-    &:hover::after,
-    &.active-link::after {
-      transform: translateX(-50%) scaleX(1);
-    }
+@media (max-width: 768px) {
+  .main-header {
+    padding: 0 10px;
+      display: block !important; 
   }
 
-  .btn-gold-gradient {
-    background: linear-gradient(90deg, #ffd700, #f6c90e);
-    border: none;
-    padding: 0.5rem 1.25rem;
-    border-radius: 25px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .main-header .site-logo {
+    height: 60px;
+  }
+}
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-    }
+@media (max-width: 480px) {
+  .main-header {
+    height: 70px;
+      display: block !important; 
   }
 
-  .btn-outline-gold {
-    color: #ffd700;
-    border: 1px solid #ffd700;
-    background: transparent;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: #ffd700;
-      color: #000;
-    }
-  }
-
-  .mobile-menu {
-    animation: slideDown 0.4s ease;
-    .nav-link {
-      color: #fff;
-      padding: 0.6rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      &:hover {
-        color: #ffd700;
-      }
-    }
+  .main-header .site-logo {
+    height: 80px;
   }
 }
 
@@ -87,6 +144,7 @@
   background: #111;
 }
 
+/* Slide animation */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -95,5 +153,31 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+/* ========================== */
+/* FIX MOBILE HEADER & MENU   */
+/* ========================== */
+
+@media (max-width: 768px) {
+
+  /* Allow header to expand when menu drops */
+  .main-header {
+    height: auto !important;
+    padding: 10px 0;
+  }
+
+  /* Ensure container doesn't clip dropdown */
+  .main-header .container {
+    width: 100% !important;
+    height:50px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Mobile menu full width fix */
+  .mobile-menu {
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.15);
   }
 }
