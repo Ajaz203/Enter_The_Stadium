@@ -13,30 +13,91 @@ body {
   margin: 0;
 }
 
-
 .hero-section {
   position: relative;
-  height: 70vh;
-  //  background: url('https://i.imgur.com/8q4nIhx.jpg') center/cover no-repeat;
+  min-height: 85vh;
+  padding: 40px 0;
+  background: url('https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=1920&q=80')
+              center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  text-align: center;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
- background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.65);
   z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
-  text-align: center;
+  // max-width: 900px;
   animation: fadeInUp 1.2s ease both;
+  padding: 20px;
+}
+
+/* -------------------- RESPONSIVE ADJUSTMENTS -------------------- */
+
+/* Laptops & Tablets */
+@media (max-width: 992px) {
+  .hero-section {
+    min-height: 70vh;
+    padding: 60px 20px;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-content p {
+    font-size: 1.05rem;
+  }
+}
+
+/* Tablets & Large Mobiles */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 65vh;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .btn-gold {
+    padding: 10px 25px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small Mobiles */
+@media (max-width: 576px) {
+  .hero-section {
+    min-height: 75vh;
+    padding: 50px 15px;
+  }
+  .hero-content h1 {
+    font-size: 1.7rem;
+  }
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+  .hero-content {
+    padding: 10px;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 400px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  .hero-content p {
+    font-size: 0.9rem;
+  }
 }
 
 .hero-title {
@@ -59,22 +120,6 @@ body {
   line-height: 1.6;
 }
 
-.btn-gold {
-  background: #f5c542;
-  color: #000;
-  border: 2px solid transparent;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.btn-gold:hover {
-  background: transparent;
-  border-color: #f5c542;
-  color: #f5c542;
-  transform: translateY(-4px);
-  box-shadow: 0 0 15px rgba(245, 197, 66, 0.4);
-}
 
 /* Floating glow orbs for depth */
 .floating-lights::before,

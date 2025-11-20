@@ -1,33 +1,42 @@
 <section class="tickets-page-section py-5 bg-dark text-white">
   <div class="container">
-    <h2 class="section-title text-center text-gold mb-5">All Tickets</h2>
 
+    <h2 class="section-title text-center text-gold mb-4">Featured Concerts</h2>
+
+    <!-- Swiper Slider -->
+    <div *ngIf="featuredEvents.length > 0" class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let event of featuredEvents">
+          <div class="ticket-card shadow rounded p-3 text-center">
+            <img [src]="getEventImage(event)" [alt]="event.name" class="img-fluid rounded mb-2" />
+            <h5 class="text-gold">{{ event.name }}</h5>
+            <p class="text-light">{{ event.dates.start.localDate }} | {{ event.dates.start.localTime }}</p>
+            <a [href]="event.url" target="_blank" class="btn btn-gold mt-2">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- Error / Loading -->
+    <div *ngIf="loading" class="text-center text-light mt-4">Loading concerts...</div>
+    <div *ngIf="!loading && error" class="text-center text-light mt-4">{{ error }}</div>
+
+    <!-- All Concerts Grid -->
+    <h2 class="section-title text-center text-gold mb-4 mt-5">All Music Concerts</h2>
     <div class="row g-4">
-      <div
-        class="col-12 col-sm-6 col-md-4 col-lg-3"
-        *ngFor="let ticket of tickets"
-      >
-        <div class="ticket-card position-relative overflow-hidden">
-          <div class="ticket-img-wrapper">
-            <img
-              [src]="ticket.image"
-              [alt]="ticket.title"
-              class="ticket-img w-100"
-            />
-            <div class="ticket-overlay d-flex flex-column justify-content-end p-3">
-              <h5 class="text-gold mb-2">{{ ticket.title }}</h5>
-              <p class="small mb-3">{{ ticket.description }}</p>
-              <a
-                [routerLink]="['/contact']"
-                [queryParams]="{ ticket: ticket.title }"
-                class="btn btn-gold fw-semibold border-gold"
-              >
-                Get Enquiry
-              </a>
-            </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let event of tickets">
+        <div class="ticket-card position-relative overflow-hidden rounded shadow">
+          <img [src]="getEventImage(event)" [alt]="event.name" class="ticket-img w-100">
+          <div class="ticket-overlay d-flex flex-column justify-content-end p-3">
+            <h5 class="text-gold fw-bold mb-1">{{ event.name }}</h5>
+            <p class="small mb-2">{{ event.dates.start.localDate }} | {{ event.dates.start.localTime }}</p>
+            <a [href]="event.url" target="_blank" class="btn btn-gold fw-semibold border-gold">Book Now</a>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>

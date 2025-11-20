@@ -1,3 +1,24 @@
+/* styles.scss */
+@import "ngx-toastr/toastr";
+
+/* Optional custom login styles */
+.login-wrapper {
+  height: 100vh;
+  background: #00457c;
+}
+.login-box {
+  background: #1a1a1a;
+  border-radius: 8px;
+  width: 350px;
+}
+.btn-login {
+  background: #ffcc00;
+  border: none;
+  color: #000;
+  font-weight: bold;
+}
+
+
 :root {
   --gold-primary: #d4af37;
   --gold-dark: #b8860b;
@@ -11,15 +32,30 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-.btn-gold {
-  background-color: var(--gold-primary);
-  color: #fff;
-  border: none;
-  transition: all 0.3s;
+// .btn-gold {
+//   background-color: var(--gold-primary);
+//   color: #fff;
+//   border: none;
+//   transition: all 0.3s;
 
-  &:hover {
-    background-color: var(--gold-dark);
-  }
+//   &:hover {
+//     background-color: var(--gold-dark);
+//   }
+// }
+
+.btn-gold {
+  background: linear-gradient(90deg, #d4af37, #b8860b);
+  color: #111;
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(90deg, #b8860b, #d4af37);
+  color: #fff;
 }
 /* Marquee container */
 .marquee {

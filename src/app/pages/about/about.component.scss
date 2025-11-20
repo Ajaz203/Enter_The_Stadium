@@ -51,73 +51,6 @@
   }
 }
 
-.stadium-gate.premium {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: clamp(1.2rem, 4vw, 4rem);
-  font-weight: 800;
-  color: #f5c542;
-  letter-spacing: clamp(1px, 0.5vw, 4px);
-
-  text-shadow: 
-    0 0 10px #f5c542aa, 
-    0 0 25px #f5c54255;
-}
-
-.stadium-gate.premium span {
-  transform: rotateY(0deg);
-  z-index: 10;
-}
-
-
-@keyframes centerFade {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
-  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-.stadium-intro-section {
-  background: #000;
-  padding: 120px 0;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Wrapper */
-.stadium-wrapper {
-  position: relative;
-  width: 80%;
-  margin: auto;
-  height: 250px;
-  perspective: 2000px;
-}
-
-/* Gates */
-.stadium-gate {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(135deg, #111, #333);
-  border: 2px solid #f5c542;
-  z-index: 10;
-  box-shadow: inset 0 0 40px rgba(245, 197, 66, 0.5);
-  animation: openGate 5s ease forwards;
-}
-
-/* Left Gate */
-.left-gate {
-  left: 0;
-  transform-origin: left;
-}
-
-/* Right Gate */
-.right-gate {
-  right: 0;
-  transform-origin: right;
-}
-
-
 
 /* Gate Opening Animation */
 @keyframes openGate {
@@ -362,19 +295,61 @@
   h3 { font-size: 1.75rem; }
 }
 
-.btn-gold {
-  background: #f5c542;
-  color: #000;
-  border: 2px solid transparent;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+
+
+
+.about-us-section {
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
-.btn-gold:hover {
-  background: transparent;
-  border-color: #f5c542;
-  color: #f5c542;
-  transform: translateY(-4px);
-  box-shadow: 0 0 15px rgba(245, 197, 66, 0.4);
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 1;
+}
+
+.about-us-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Text Box Spacing */
+.about-text-box p {
+  margin-bottom: 18px;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* RESPONSIVE TYPOGRAPHY */
+@media (max-width: 992px) {
+  h1.display-4 {
+    font-size: 2.3rem;
+    text-align: center;
+  }
+
+  .about-text-box p {
+    text-align: center;
+  }
+}
+
+/* 3D CUBE RESPONSIVE ALIGNMENT */
+.about-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .tech-3d-cube {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 576px) {
+  .tech-3d-cube {
+    transform: scale(0.65);
+  }
 }

@@ -14,8 +14,9 @@
           class="form-control custom-input" 
           formControlName="email" 
           placeholder="Enter your email">
-        <small class="text-danger" *ngIf="submitted && loginForm.controls['email'].errors">
-          Valid email is required
+        <small class="text-danger" *ngIf="submitted && control('email')?.errors">
+          <span *ngIf="control('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="control('email')?.errors?.['email']">Enter a valid email</span>
         </small>
       </div>
 
@@ -27,8 +28,8 @@
           class="form-control custom-input" 
           formControlName="password" 
           placeholder="Enter your password">
-        <small class="text-danger" *ngIf="submitted && loginForm.controls['password'].errors">
-          Password is required
+        <small class="text-danger" *ngIf="submitted && control('password')?.errors">
+          <span *ngIf="control('password')?.errors?.['required']">Password is required</span>
         </small>
       </div>
 
@@ -37,9 +38,6 @@
         Login
       </button>
     </form>
-
-    <!-- Error Message -->
-    <p class="text-danger text-center mt-3" *ngIf="loginError">{{ loginError }}</p>
 
   </div>
 </div>

@@ -2,23 +2,26 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TicketService } from '../../services/ticket.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  standalone: true
 })
 export class LoginComponent {
-
   loginForm!: FormGroup;
   submitted = false;
-  loginError: string = "";
 
-  // Static Login Credentials
-  validEmail = "admin@gmail.com";
-  validPassword = "12345";
-
-  constructor(private fb: FormBuilder ,private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: TicketService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -27,20 +30,26 @@ export class LoginComponent {
     });
   }
 
+  control(controlName: string) {
+    return this.loginForm.get(controlName);
+  }
+
   onLogin() {
     this.submitted = true;
 
-    if (this.loginForm.invalid) return;
-
-    const { email, password } = this.loginForm.value;
-
-    if (email === this.validEmail && password === this.validPassword) {
-      this.loginError = "";
-      alert("Login Successful!");
-
-      this.router.navigate(['/dashboard']);
-    } else {
-      this.loginError = "Invalid email or password!";
+    if (this.loginForm.invalid) {
+      this.toastr.warning('Please fill in all required fields', 'Warning');
+      return;
     }
+
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (res: any) => {
+        this.toastr.success('Login Successful!', 'Success');
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        this.toastr.error('Invalid email or password!', 'Error');
+      }
+    });
   }
 }

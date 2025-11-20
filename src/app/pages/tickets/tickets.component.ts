@@ -1,44 +1,84 @@
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+
+declare var Swiper: any;
 
 @Component({
   selector: 'app-tickets',
-  imports: [RouterLink,CommonModule],
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './tickets.component.html',
-  styleUrl: './tickets.component.scss'
+  styleUrls: ['./tickets.component.scss']
 })
-export class TicketsComponent {
-tickets = [
-    {
-      title: 'FIFA World Cup Final',
-      description: 'Experience the world’s biggest football event live!',
-      image: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6'
-    },
-    {
-      title: 'Coldplay Live Concert',
-      description: 'Feel the magic of music with Coldplay’s stunning live show.',
-      image: 'https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2'
-    },
-    {
-      title: 'Formula 1 Grand Prix',
-      description: 'Catch the speed, thrill, and adrenaline rush live at F1.',
-      image: 'https://images.unsplash.com/photo-1521412644187-c49fa049e84d'
-    },
-    {
-      title: 'Cricket World Cup',
-      description: 'Witness the world’s best teams battle for the trophy.',
-      image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018'
-    },
-    {
-      title: 'Wimbledon Finals',
-      description: 'Experience tennis at its finest on the world’s best court.',
-      image: 'https://images.unsplash.com/photo-1507646227500-4d389b0012be'
-    },
-    {
-      title: 'NBA Playoffs',
-      description: 'Feel the energy of the NBA’s most thrilling matchups.',
-      image: 'https://images.unsplash.com/photo-1504450758481-7338eba7524a'
+export class TicketsComponent implements OnInit, AfterViewInit {
+  tickets: any[] = [];
+  featuredEvents: any[] = [];
+  loading: boolean = true;
+  error: string = '';
+
+  apiKey: string = 'QDlCJV2YMLjMLAITNL3JNJ7y4ZlmUDsP';
+  countryCode: string = 'US'; // Use US for live data
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.fetchMusicConcerts();
+  }
+
+  fetchMusicConcerts(): void {
+    this.loading = true;
+    this.error = '';
+
+    const url = `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${this.countryCode}&classificationName=music&size=20&apikey=${this.apiKey}`;
+
+    this.http.get<any>(url).subscribe({
+      next: (res) => {
+        this.loading = false;
+        if (res._embedded && res._embedded.events) {
+          this.tickets = res._embedded.events;
+          this.featuredEvents = this.tickets.slice(0, 5); // first 5 for slider
+        } else {
+          this.tickets = [];
+          this.featuredEvents = [];
+          this.error = 'No music concerts available.';
+        }
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error(err);
+        this.error = 'Error fetching music concerts.';
+      }
+    });
+  }
+
+  getEventImage(event: any): string {
+    if (event.images && event.images.length > 0) {
+      const img = event.images.find((i: any) => i.ratio === '16_9') || event.images[0];
+      return img.url;
     }
-  ];
+    return 'assets/default-event.jpg';
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (this.featuredEvents.length > 0) {
+        new Swiper('.swiper', {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          loop: true,
+          autoplay: { delay: 3000 },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
+          }
+        });
+      }
+    }, 1000);
+  }
 }

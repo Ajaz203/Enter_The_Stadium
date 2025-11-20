@@ -1,92 +1,35 @@
 .tickets-page-section {
-  background: #0d0d0d;
-  min-height: 100vh;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #d4af37;
-}
-
-.ticket-card {
-  background: #1a1a1a;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.ticket-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
-}
-
-.ticket-img-wrapper {
-  position: relative;
-  overflow: hidden;
-  height: 250px;
-}
-
-.ticket-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.ticket-card:hover .ticket-img {
-  transform: scale(1.1);
-}
-
-.ticket-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.ticket-card:hover .ticket-overlay {
-  opacity: 1;
-}
-
-.btn-gold {
-  background-color: #f5c542;
-  color: #000;
-   border: 2px solid transparent;
-  font-weight: 600;
-  border-radius: 50px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.btn-gold:hover {
-  background: transparent;
-  border-color: #f5c542;
-  color: #f5c542;
-  transform: translateY(-4px);
-  box-shadow: 0 0 15px rgba(245, 197, 66, 0.4);
-}
-
-
-/* Responsive Grid */
-@media (max-width: 992px) {
-  .ticket-img-wrapper {
-    height: 220px;
+  background-color: #0a0a0a;
+  .text-gold {
+    color: #FFD700;
   }
-}
-
-@media (max-width: 768px) {
-  .ticket-img-wrapper {
-    height: 200px;
+  .ticket-card {
+    background: #1c1c1c;
+    transition: transform 0.3s, box-shadow 0.3s;
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+    .ticket-overlay {
+      background: rgba(0, 0, 0, 0.6);
+      h5 {
+        font-size: 1rem;
+      }
+      p {
+        font-size: 0.85rem;
+      }
+    }
   }
-}
 
-@media (max-width: 576px) {
-  .ticket-img-wrapper {
-    height: 180px;
-  }
+
 
   .section-title {
     font-size: 2rem;
+    font-weight: bold;
   }
+}
+
+/* Swiper overrides */
+.swiper-button-next, .swiper-button-prev {
+  color: #FFD700;
 }
