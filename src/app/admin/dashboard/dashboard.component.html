@@ -2,27 +2,26 @@
 
   <!-- HEADER -->
   <div class="topbar d-flex justify-content-between align-items-center">
-    <h2 class="title">🎟️ Ticket Management</h2>
-
+    <h2 class="title">📄 Post Management</h2>
     <button class="btn-logout" (click)="logout()">
       <i class="bi bi-box-arrow-right me-1"></i> Logout
     </button>
   </div>
 
-  <!-- ADD TICKET CARD -->
+  <!-- ADD POST CARD -->
   <div class="card glass-card mb-5 p-4">
-    <h4 class="section-title mb-4">Add New Ticket</h4>
+    <h4 class="section-title mb-4">Add New Post</h4>
 
     <div class="row g-4">
 
       <div class="col-md-4">
         <label class="form-label">Title</label>
-        <input type="text" class="form-control custom-input" [(ngModel)]="newTicket.title">
+        <input type="text" class="form-control custom-input" [(ngModel)]="newPost.title">
       </div>
 
       <div class="col-md-4">
         <label class="form-label">Description</label>
-        <input type="text" class="form-control custom-input" [(ngModel)]="newTicket.description">
+        <input type="text" class="form-control custom-input" [(ngModel)]="newPost.description">
       </div>
 
       <div class="col-md-4">
@@ -37,22 +36,26 @@
 
 
       <div class="col-12 text-end">
-        <button class="btn-save" (click)="addTicket()">+ Add Ticket</button>
+        <button class="btn-save" (click)="addPost()" [disabled]="addingPost">
+          <span *ngIf="addingPost" class="spinner-border spinner-border-sm me-2"></span>
+          + Add Post
+        </button>
       </div>
 
     </div>
   </div>
 
-  <!-- TICKETS TABLE -->
+  <!-- POSTS TABLE -->
   <div class="card glass-card p-4">
-    <h4 class="section-title mb-4">All Tickets</h4>
+    <h4 class="section-title mb-4">All Posts</h4>
 
     <div class="table-responsive">
       <table class="table custom-table align-middle">
         <thead>
           <tr>
             <th>#</th>
-            <th>Event Title</th>
+            <th>Post ID</th>
+            <th>Title</th>
             <th>Description</th>
             <th>Image</th>
             <th class="text-end">Actions</th>
@@ -60,37 +63,38 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let ticket of tickets">
-            <td>{{ ticket.id }}</td>
-            <td>{{ ticket.title }}</td>
-            <td>{{ ticket.description }}</td>
+          <tr *ngFor="let post of posts; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ post.postId }}</td>
+            <td>{{ post.title }}</td>
+            <td>{{ post.description }}</td>
             <td>
-              <img [src]="ticket.image" class="table-img" alt="event">
+              <img [src]="API + '/uploads/' + post.image" class="table-img" alt="post">
             </td>
             <td class="text-end">
               <button class="btn-action edit me-2" data-bs-toggle="modal" data-bs-target="#editModal"
-                (click)="selectTicket(ticket)">
+                (click)="selectPost(post)">
                 Edit
               </button>
-
-              <button class="btn-action delete" (click)="deleteTicket(ticket)">
+              <button class="btn-action delete" (click)="deletePost(post)" [disabled]="deletingPostId === post.postId">
+                <span *ngIf="deletingPostId === post.postId" class="spinner-border spinner-border-sm me-1"></span>
                 Delete
               </button>
+
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
   </div>
 
   <!-- EDIT MODAL -->
   <div class="modal fade" id="editModal">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content modal-glass">
+      <div class="modal-content modal-glass" *ngIf="editingPost">
 
         <div class="modal-header border-0">
-          <h5 class="modal-title">Edit Ticket</h5>
+          <h5 class="modal-title">Edit Post</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="cancelEdit()"></button>
         </div>
 
@@ -99,12 +103,12 @@
 
             <div class="col-md-4">
               <label class="form-label">Title</label>
-              <input type="text" class="form-control custom-input" [(ngModel)]="editingTicket!.title">
+              <input type="text" class="form-control custom-input" [(ngModel)]="editingPost.title">
             </div>
 
             <div class="col-md-4">
               <label class="form-label">Description</label>
-              <input type="text" class="form-control custom-input" [(ngModel)]="editingTicket!.description">
+              <input type="text" class="form-control custom-input" [(ngModel)]="editingPost.description">
             </div>
 
             <div class="col-md-4">
@@ -113,21 +117,37 @@
             </div>
 
             <!-- PREVIEW -->
-            <div class="col-12 text-center" *ngIf="editImagePreview">
+            <!-- <div class="col-12 text-center" *ngIf="editImagePreview">
+              <img [src]="editingPost ? API + '/uploads/' + editImagePreview : editImagePreview" class="preview-img">
+            </div> -->
+
+            <div class="col-12 text-center" *ngIf="editImagePreview; else existingImage">
               <img [src]="editImagePreview" class="preview-img">
             </div>
-
-
+            <ng-template #existingImage>
+              <div class="col-12 text-center">
+                <img [src]="API + '/uploads/' + editingPost.image" class="preview-img">
+              </div>
+            </ng-template>
           </div>
         </div>
 
         <div class="modal-footer border-0">
           <button class="btn-cancel" data-bs-dismiss="modal" (click)="cancelEdit()">Cancel</button>
-          <button class="btn-update" data-bs-dismiss="modal" (click)="updateTicket()">Update</button>
+          <button class="btn-update" data-bs-dismiss="modal" (click)="updatePost()" [disabled]="updatingPost">
+            <span *ngIf="updatingPost" class="spinner-border spinner-border-sm me-2"></span>
+            Update
+          </button>
+
         </div>
 
       </div>
     </div>
   </div>
 
+</div>
+
+
+<div *ngIf="loadingPosts" class="text-center my-3">
+  <div class="spinner-border text-primary" role="status"></div>
 </div>

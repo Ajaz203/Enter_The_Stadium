@@ -5,8 +5,9 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
-interface Ticket {
-  id?: number;
+interface Post {
+  _id?: string;
+  postId?: string;
   title: string;
   description: string;
   image: string;
@@ -27,134 +28,157 @@ export class DashboardComponent {
     private toastr: ToastrService
   ) {}
 
-  API = "http://localhost:5000/api/tickets";
+  API = "https://ajaz-backend.onrender.com";
 
-  tickets: Ticket[] = [];
+  posts: Post[] = [];
 
   // ADD FORM
-  newTicket: Ticket = { title: '', description: '', image: '' };
+  newPost: Post = { title: '', description: '', image: '' };
   newImageFile: File | null = null;
-  newImagePreview: string | ArrayBuffer | null = null;
+  newImagePreview: any = null;
 
   // EDIT FORM
-  editingTicket: Ticket | null = null;
+  editingPost: Post | null = null;
   editImageFile: File | null = null;
-  editImagePreview: string | ArrayBuffer | null = null;
+  editImagePreview: any = null;
+// Add flags at the top of the component
+loadingPosts = false;
+addingPost = false;
+updatingPost = false;
+deletingPostId: string | null = null;
 
   ngOnInit() {
-    this.getTickets();
+    this.getPosts();
   }
 
-  // GET ALL
-  getTickets() {
-    this.http.get<Ticket[]>(this.API).subscribe({
-      next: (res) => this.tickets = res,
-      error: () => this.toastr.error("Failed to load tickets", "Error")
-    });
-  }
-
-  // -----------------------------
-  // ADD TICKET
-  // -----------------------------
-  addTicket() {
-    if (!this.newTicket.title || !this.newTicket.description) {
-      this.toastr.error("Please fill all fields", "Error");
-      return;
+  // GET ALL POSTS
+getPosts() {
+  this.loadingPosts = true;
+  this.http.get<any>(`${this.API}/get-posts`).subscribe({
+    next: (res) => {
+      this.posts = res.data.map((post: { image: any; }) => ({
+        ...post,
+        image: post.image || ''
+      }));
+      this.loadingPosts = false;
+    },
+    error: () => {
+      this.toastr.error("Failed to load posts");
+      this.loadingPosts = false;
     }
-
-    const form = new FormData();
-    form.append("title", this.newTicket.title);
-    form.append("description", this.newTicket.description);
-
-    if (this.newImageFile) {
-      form.append("image", this.newImageFile);
-    }
-
-    this.http.post(this.API, form).subscribe({
-      next: () => {
-        this.toastr.success("Ticket added successfully", "Success");
-        this.getTickets();
-        this.newTicket = { title: '', description: '', image: '' };
-        this.newImageFile = null;
-        this.newImagePreview = null;
-      },
-      error: () => this.toastr.error("Failed to add ticket", "Error")
-    });
-  }
-
-  selectTicket(ticket: Ticket) {
-    this.editingTicket = { ...ticket };
-    this.editImagePreview = ticket.image; // existing preview
-  }
-
-  // PREVIEW - EDIT
-// ADD TICKET PREVIEW
-onNewFileSelect(event: any) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  this.newImageFile = file;
-
-  const reader = new FileReader();
-  reader.onload = (e: any) => {
-    this.newImagePreview = e.target.result;
-  };
-  reader.readAsDataURL(file);
+  });
 }
 
-// EDIT PREVIEW
-onEditFileSelect(event: any) {
-  const file = event.target.files[0];
-  if (!file) return;
+  // IMAGE PREVIEW – ADD
+  onNewFileSelect(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-  this.editImageFile = file;
+    this.newImageFile = file;
 
-  const reader = new FileReader();
-  reader.onload = (e: any) => {
-    this.editImagePreview = e.target.result;
-  };
-  reader.readAsDataURL(file);
+    const reader = new FileReader();
+    reader.onload = (e: any) => this.newImagePreview = e.target.result;
+    reader.readAsDataURL(file);
+  }
+
+  // IMAGE PREVIEW – EDIT
+  onEditFileSelect(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.editImageFile = file;
+
+    const reader = new FileReader();
+    reader.onload = (e: any) => this.editImagePreview = e.target.result;
+    reader.readAsDataURL(file);
+  }
+
+  // ADD POST
+addPost() {
+  if (!this.newPost.title || !this.newPost.description) {
+    this.toastr.error("Please fill all fields");
+    return;
+  }
+
+  this.addingPost = true;
+
+  const form = new FormData();
+  form.append("title", this.newPost.title);
+  form.append("description", this.newPost.description);
+  if (this.newImageFile) form.append("image", this.newImageFile);
+
+  this.http.post(`${this.API}/create-post`, form).subscribe({
+    next: () => {
+      this.toastr.success("Post added!");
+      this.getPosts();
+      this.newPost = { title: '', description: '', image: '' };
+      this.newImageFile = null;
+      this.newImagePreview = null;
+      this.addingPost = false;
+    },
+    error: () => {
+      this.toastr.error("Failed to add post");
+      this.addingPost = false;
+    }
+  });
 }
 
 
-  updateTicket() {
-    if (!this.editingTicket) return;
+  // SELECT POST FOR EDIT
+selectPost(post: Post) {
+  this.editingPost = { ...post };
+  this.editImagePreview = post.image ? `${this.API}/uploads/${post.image}` : null;
+}
 
-    const form = new FormData();
-    form.append("title", this.editingTicket.title);
-    form.append("description", this.editingTicket.description);
+  // UPDATE POST
+updatePost() {
+  if (!this.editingPost) return;
 
-    if (this.editImageFile) {
-      form.append("image", this.editImageFile);
+  this.updatingPost = true;
+
+  const form = new FormData();
+  form.append("postId", this.editingPost.postId!);
+  form.append("title", this.editingPost.title);
+  form.append("description", this.editingPost.description);
+  if (this.editImageFile) form.append("image", this.editImageFile);
+
+  this.http.post(`${this.API}/update-post`, form).subscribe({
+    next: () => {
+      this.toastr.success("Post updated!");
+      this.getPosts();
+      this.editingPost = null;
+      this.editImageFile = null;
+      this.editImagePreview = null;
+      this.updatingPost = false;
+    },
+    error: (err) => {
+      console.error("Update failed", err);
+      this.toastr.error("Failed to update post");
+      this.updatingPost = false;
     }
+  });
+}
 
-    this.http.put(`${this.API}/${this.editingTicket.id}`, form).subscribe({
-      next: () => {
-        this.toastr.success("Ticket updated successfully", "Updated");
-        this.getTickets();
-        this.editingTicket = null;
-        this.editImageFile = null;
-        this.editImagePreview = null;
-      },
-      error: () => this.toastr.error("Failed to update ticket", "Error")
-    });
-  }
+  // DELETE POST
+deletePost(post: Post) {
+  this.deletingPostId = post.postId!;
 
-  // DELETE
-  deleteTicket(ticket: Ticket) {
-    this.http.delete(`${this.API}/${ticket.id}`).subscribe({
-      next: () => {
-        this.toastr.success("Ticket deleted", "Deleted");
-        this.getTickets();
-      },
-      error: () => this.toastr.error("Failed to delete ticket", "Error")
-    });
-  }
-
+  this.http.request('post', `${this.API}/delete-post`, { body: { postId: post.postId } }).subscribe({
+    next: () => {
+      this.toastr.success("Post deleted");
+      this.getPosts();
+      this.deletingPostId = null;
+    },
+    error: () => {
+      this.toastr.error("Failed to delete post");
+      this.deletingPostId = null;
+    }
+  });
+}
   cancelEdit() {
-    this.editingTicket = null;
-    this.editImagePreview = null;
+    this.editingPost = null;
     this.editImageFile = null;
+    this.editImagePreview = null;
   }
 
   logout() {
