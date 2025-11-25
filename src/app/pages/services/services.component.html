@@ -4,9 +4,9 @@
   <div class="overlay" style="background: rgba(0,0,0,0.6); padding: 100px 0;">
     <div class="container">
       <h1 class="display-4 fw-bold text-gold">Our Services</h1>
-      <p class="lead text-light mt-3">Delivering world-class accreditation, RFID, and embedded solutions for secure and
-        efficient operations.</p>
-      <a href="#service-products" class="btn btn-gold px-5 py-3 fw-semibold border-gold mt-4">Explore Services</a>
+      <!-- <p class="lead text-light mt-3">Delivering world-class accreditation, RFID, and embedded solutions for secure and
+        efficient operations.</p> -->
+      <!-- <a href="/contact" class="btn btn-gold px-5 py-3 fw-semibold border-gold mt-4"> Contact Us</a> -->
     </div>
   </div>
 </section>
@@ -16,28 +16,28 @@
 
     <div class="row align-items-center gy-5">
 
-      <div class="col-lg-6">
-        <h2 class="text-gold fw-bold mb-4 animate__animated animate__fadeInLeft">
+      <div class="col-lg-12">
+        <h2 class="text-gold fw-bold mb-4 text-center">
           Access Control & Accreditation
         </h2>
 
-        <p class="text-light mb-3">
+        <p class="text-light mb-3 text-center">
           Managing access at large-scale events requires precision and security. With over 20 years of expertise,
           we deliver a complete 360° accreditation and access control ecosystem built to keep fans, staff,
           and VIPs moving seamlessly and safely.
         </p>
 
-        <p class="text-light mb-4">
-          We integrate advanced software with robust hardware to ensure only the right people access the right zones —
-          quickly, securely, and without bottlenecks.
+        <p class="text-light mb-4 text-center">
+          We combine advanced software with robust hardware to create end-to-end systems that ensure only the right
+          people gain access to the right areas — every time.
         </p>
       </div>
 
       <!-- RIGHT SIDE IMAGE -->
-      <div class="col-lg-6 text-center">
+      <!-- <div class="col-lg-6 text-center">
         <img src="assets/2.1.webp" alt="Accreditation"
           class="img-fluid rounded shadow-lg hero-accreditation-img animate__animated animate__fadeInRight">
-      </div>
+      </div> -->
 
     </div>
 
@@ -45,15 +45,19 @@
     <div class="row gy-5 mt-4">
 
       <!-- Advanced Technologies -->
-      <div class="col-lg-6">
+      <div class="col-lg-6 ">
         <h5 class="text-gold fw-semibold mb-3">Advanced Access Technologies</h5>
 
         <ul class="feature-list">
-          <li>Facial Recognition for fast, touch-free entry</li>
-          <li>Unique Digital QR Codes for secure mobile access</li>
-          <li>RFID & NFC Cards for tap-and-go control</li>
-          <li>Smart Wristbands (Fabric / Tyvek / Waterproof)</li>
-          <li>On-Site ID Card Printing for instant accreditation</li>
+          <li> Cutting-Edge Access Control Technology</li>
+          <li> We use the latest innovations in event security, including:</li>
+          <li> Facial Recognition Systems for fast, touch-free, high-security entry</li>
+          <li> Unique Digital QR Codes sent directly to attendees’ mobile devices</li>
+          <li> RFID & NFC Cards for tap-and-go access control</li>
+          <li> Smart Wristbands (Fabric, Tyvek, Waterproof) for festivals, concerts & sporting events</li>
+          <li>On-Site ID Card Printing for immediate accreditation</li>
+          <p>These solutions eliminate bottlenecks, reduce fraud, and deliver a seamless, contactless experience for
+            attendees and staff.</p>
         </ul>
       </div>
 
@@ -62,12 +66,19 @@
         <h5 class="text-gold fw-semibold mb-3">Complete Accreditation Ecosystem</h5>
 
         <ul class="feature-list">
+          <p>
+            Our access control offering includes everything you need:
+          </p>
           <li>Secure software vetting & approvals</li>
           <li>High-quality PVC / RFID / NFC cards</li>
-          <li>Custom lanyards & premium wristbands</li>
+          <li>Custom-designed lanyards and wristbands</li>
           <li>Powerful access control software</li>
           <li>Real-time tracking & reporting</li>
           <li>Integration with gates, scanners & turnstiles</li>
+          <p>
+            Whether your event hosts 100 or 100,000 people, our solutions scale effortlessly for a smooth,
+            secure, and professional experience from start to finish.
+          </p>
         </ul>
       </div>
 
@@ -76,10 +87,7 @@
     <!-- FINAL PARAGRAPH -->
     <div class="row justify-content-center">
       <div class="col-10">
-        <p class="text-light mt-4 text-center">
-          Whether your event hosts 100 or 100,000 people, our solutions scale effortlessly for a smooth,
-          secure, and professional experience from start to finish.
-        </p>
+
       </div>
     </div>
 
@@ -88,7 +96,7 @@
 
 <section class="accreditation-section py-5 text-white">
   <div class="container">
-  
+
     <h2 class="text-center text-gold fw-bold mb-4" id="accreditation">Accreditation</h2>
 
     <!-- TABS -->
@@ -100,8 +108,13 @@
         </button>
       </li>
       <li class="nav-item">
-        <button class="nav-link" [class.active]="activeTab === 'pvc'" (click)="activeTab = 'pvc'">
-          PVC Cards
+        <button class="nav-link" [class.active]="activeTab === 'Lanyards'" (click)="activeTab = 'Lanyards'">
+         Lanyards
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" [class.active]="activeTab === 'wristbands'" (click)="activeTab = 'wristbands'">
+        Wristbands
         </button>
       </li>
 
@@ -111,9 +124,9 @@
     <div class="tab-content">
 
       <!-- PVC CARDS TAB -->
-      <div class="row g-4" *ngIf="activeTab === 'pvc'">
+      <div class="row g-4" *ngIf="activeTab === 'Lanyards'">
 
-        <div class="col-md-6 col-lg-4" *ngFor="let card of pvcCards">
+        <div class="col-md-6 col-lg-4" *ngFor="let card of LanyardsTypes">
           <div class="card bg-dark border-gold text-white shadow p-3 h-100 d-flex flex-column">
 
             <img [src]="card.images[card.activeImage]" class="img-fluid rounded mb-3 fixed-img" alt="{{ card.title }}">
@@ -127,9 +140,9 @@
 
             <p class="text-light small mt-2">{{ card.description }}</p>
 
-            <ul class="text-light small mt-2">
+            <!-- <ul class="text-light small mt-2">
               <li *ngFor="let s of card.specs">{{ s }}</li>
-            </ul>
+            </ul> -->
 
             <a routerLink="/contact" class="btn btn-gold mt-auto px-4">
               Request a Call Back
@@ -142,6 +155,35 @@
       <div class="row g-4" *ngIf="activeTab === 'idcards'">
 
         <div class="col-md-6 col-lg-4" *ngFor="let item of idCardTypes">
+          <div class="card bg-dark border-gold text-white shadow p-3 h-100 d-flex flex-column">
+
+            <img [src]="item.images[item.activeImage ?? 0]" class="img-fluid rounded mb-3 fixed-img"
+              alt="{{ item.title }}">
+
+
+            <div class="d-flex gap-2 mb-2">
+              <img *ngFor="let img of item.images; let j = index" [src]="img" class="thumb-img"
+                [class.active-thumb]="item.activeImage === j" (click)="item.activeImage = j" alt="thumb">
+            </div>
+
+            <h5 class="text-gold fw-semibold">{{ item.title }}</h5>
+
+            <p class="text-light small mt-2">{{ item.description }}</p>
+
+            <ul class="text-light small mt-2">
+              <li *ngFor="let s of item.specs">{{ s }}</li>
+            </ul>
+
+            <a routerLink="/contact" class="btn btn-gold mt-auto px-4">
+              Request a Call Back
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <div class="row g-4" *ngIf="activeTab === 'wristbands'">
+
+        <div class="col-md-6 col-lg-4" *ngFor="let item of wristbandTypes">
           <div class="card bg-dark border-gold text-white shadow p-3 h-100 d-flex flex-column">
 
             <img [src]="item.images[item.activeImage ?? 0]" class="img-fluid rounded mb-3 fixed-img"
@@ -238,21 +280,22 @@
           </p>
 
           <p>
-            Looking for premium ticket packages or hospitality solutions?
-            Just reach out — we’ll arrange everything with ease and professionalism.
+            If you’re looking for premium ticket packages or hospitality solutions,
+            <span>just reach out to us — we’ll arrange everything with ease and professionalism.</span>
+
           </p>
 
         </div>
       </div>
-   
+
 
       <!-- IMAGE COLUMN -->
       <div class="col-md-6 text-center">
         <img src="assets/1.webp" alt="Ticketing" class="ticket-img img-fluid shadow rounded-3">
       </div>
     </div>
- 
-      <div class="text-center mt-5">
+
+    <div class="text-center mt-5">
       <a routerLink="/tickets" class="btn btn-gold px-4 py-2">Get Started</a>
     </div>
   </div>
@@ -263,7 +306,7 @@
 <!-- Embedded Products Section -->
 <section class="embedded-section py-5 bg-dark text-white">
   <div class="container">
-    <h2 class="text-gold fw-bold mb-5 mt-3 text-center ">Embedded Products</h2>
+    <h2 class="text-gold fw-bold mb-5 mt-3 text-center ">Accreditation Software services</h2>
     <p class="text-center text-light mb-5">
       We design and manufacture smart embedded products to bring intelligence to everyday environments.
     </p>

@@ -8,7 +8,7 @@ declare var Swiper: any;
 @Component({
   selector: 'app-tickets',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './tickets.component.html',
   styleUrls: ['./tickets.component.scss']
 })

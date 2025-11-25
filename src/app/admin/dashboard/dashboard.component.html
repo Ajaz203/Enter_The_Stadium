@@ -16,8 +16,8 @@
     <div class="row g-4">
 
       <div class="col-md-4">
-        <label class="form-label ">Title</label>
-        <input type="text" class="form-control custom-input " [(ngModel)]="newTicket.title">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control custom-input" [(ngModel)]="newTicket.title">
       </div>
 
       <div class="col-md-4">
@@ -26,14 +26,18 @@
       </div>
 
       <div class="col-md-4">
-        <label class="form-label">Image URL</label>
-        <input type="text" class="form-control custom-input" [(ngModel)]="newTicket.image">
+        <label class="form-label">Upload Image</label>
+        <input type="file" class="form-control custom-input" (change)="onNewFileSelect($event)">
       </div>
 
+      <!-- PREVIEW -->
+      <div class="col-12 text-center" *ngIf="newImagePreview">
+        <img [src]="newImagePreview" class="preview-img">
+      </div>
+
+
       <div class="col-12 text-end">
-        <button class="btn-save" (click)="addTicket()">
-          + Add Ticket
-        </button>
+        <button class="btn-save" (click)="addTicket()">+ Add Ticket</button>
       </div>
 
     </div>
@@ -104,9 +108,16 @@
             </div>
 
             <div class="col-md-4">
-              <label class="form-label">Image URL</label>
-              <input type="text" class="form-control custom-input" [(ngModel)]="editingTicket!.image">
+              <label class="form-label">Upload New Image</label>
+              <input type="file" class="form-control custom-input" (change)="onEditFileSelect($event)">
             </div>
+
+            <!-- PREVIEW -->
+            <div class="col-12 text-center" *ngIf="editImagePreview">
+              <img [src]="editImagePreview" class="preview-img">
+            </div>
+
+
           </div>
         </div>
 

@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+
 interface Ticket {
   id?: number;
   title: string;
@@ -11,53 +14,151 @@ interface Ticket {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
 
-  constructor(private router: Router) {}
-    tickets: Ticket[] = [
-    { id: 1, title: 'FIFA World Cup Final', description: 'Watch the biggest football match live.', image: 'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=800&q=80' },
-    { id: 2, title: 'Wimbledon Championship', description: 'Experience the world’s oldest tennis tournament.', image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80' }
-  ];
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private toastr: ToastrService
+  ) {}
 
-  newTicket: Ticket = { id: 0, title: '', description: '', image: '' };
+  API = "http://localhost:5000/api/tickets";
+
+  tickets: Ticket[] = [];
+
+  // ADD FORM
+  newTicket: Ticket = { title: '', description: '', image: '' };
+  newImageFile: File | null = null;
+  newImagePreview: string | ArrayBuffer | null = null;
+
+  // EDIT FORM
   editingTicket: Ticket | null = null;
+  editImageFile: File | null = null;
+  editImagePreview: string | ArrayBuffer | null = null;
 
+  ngOnInit() {
+    this.getTickets();
+  }
+
+  // GET ALL
+  getTickets() {
+    this.http.get<Ticket[]>(this.API).subscribe({
+      next: (res) => this.tickets = res,
+      error: () => this.toastr.error("Failed to load tickets", "Error")
+    });
+  }
+
+  // -----------------------------
+  // ADD TICKET
+  // -----------------------------
   addTicket() {
-    if (this.newTicket.title && this.newTicket.description && this.newTicket.image) {
-      const newId = this.tickets.length ? Math.max(...this.tickets.map(t => t.id ?? 0)) + 1 : 1;
-      this.tickets.push({ ...this.newTicket, id: newId });
-      this.newTicket = { id: 0, title: '', description: '', image: '' };
+    if (!this.newTicket.title || !this.newTicket.description) {
+      this.toastr.error("Please fill all fields", "Error");
+      return;
     }
+
+    const form = new FormData();
+    form.append("title", this.newTicket.title);
+    form.append("description", this.newTicket.description);
+
+    if (this.newImageFile) {
+      form.append("image", this.newImageFile);
+    }
+
+    this.http.post(this.API, form).subscribe({
+      next: () => {
+        this.toastr.success("Ticket added successfully", "Success");
+        this.getTickets();
+        this.newTicket = { title: '', description: '', image: '' };
+        this.newImageFile = null;
+        this.newImagePreview = null;
+      },
+      error: () => this.toastr.error("Failed to add ticket", "Error")
+    });
   }
 
   selectTicket(ticket: Ticket) {
     this.editingTicket = { ...ticket };
+    this.editImagePreview = ticket.image; // existing preview
   }
+
+  // PREVIEW - EDIT
+// ADD TICKET PREVIEW
+onNewFileSelect(event: any) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  this.newImageFile = file;
+
+  const reader = new FileReader();
+  reader.onload = (e: any) => {
+    this.newImagePreview = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// EDIT PREVIEW
+onEditFileSelect(event: any) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  this.editImageFile = file;
+
+  const reader = new FileReader();
+  reader.onload = (e: any) => {
+    this.editImagePreview = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
 
   updateTicket() {
-    if (this.editingTicket) {
-      const index = this.tickets.findIndex(t => t.id === this.editingTicket!.id);
-      if (index > -1) {
-        this.tickets[index] = { ...this.editingTicket };
-        this.editingTicket = null;
-      }
+    if (!this.editingTicket) return;
+
+    const form = new FormData();
+    form.append("title", this.editingTicket.title);
+    form.append("description", this.editingTicket.description);
+
+    if (this.editImageFile) {
+      form.append("image", this.editImageFile);
     }
+
+    this.http.put(`${this.API}/${this.editingTicket.id}`, form).subscribe({
+      next: () => {
+        this.toastr.success("Ticket updated successfully", "Updated");
+        this.getTickets();
+        this.editingTicket = null;
+        this.editImageFile = null;
+        this.editImagePreview = null;
+      },
+      error: () => this.toastr.error("Failed to update ticket", "Error")
+    });
   }
 
+  // DELETE
   deleteTicket(ticket: Ticket) {
-    const index = this.tickets.findIndex(t => t.id === ticket.id);
-    if (index > -1) this.tickets.splice(index, 1);
+    this.http.delete(`${this.API}/${ticket.id}`).subscribe({
+      next: () => {
+        this.toastr.success("Ticket deleted", "Deleted");
+        this.getTickets();
+      },
+      error: () => this.toastr.error("Failed to delete ticket", "Error")
+    });
   }
 
   cancelEdit() {
     this.editingTicket = null;
+    this.editImagePreview = null;
+    this.editImageFile = null;
   }
+
   logout() {
-  localStorage.removeItem("loggedIn");
-  this.router.navigate(['/']);
-}
+    localStorage.removeItem("loggedIn");
+    this.router.navigate(['/']);
+  }
 }

@@ -7,24 +7,21 @@
       <span class="text-gold">ENTER</span> THE STADIUM
     </h1>
 
-    <p class="lead mb-4">
-      A global leader in <span class="text-gold">RFID cards, Security ID cards, NFC solutions</span> and integrated
-      access technologies. Empowering secure access for people, places & data.
-    </p>
 
     <p class="lead mb-3">
       <strong>Step Into the Action!</strong><br>
-      Get ticket packages for high-profile sporting events, concerts, and premium shows—delivered straight to your doorstep.
+      Get ticket packages for high-profile sporting events, concerts, and premium shows—delivered
+      straight to your doorstep.
     </p>
 
     <p class="lead mb-3">
-      For organizers, we offer seamless access control solutions including RFID entry, contactless payments for 
-      concessions, and on-site ID card printing for instant accreditation.
+      For organizers, we offer seamless access control solutions including RFID entry, contactless
+      payments for concessions, and on-site ID card printing for instant accreditation.
     </p>
 
     <p class="lead mb-4">
-      With two decades of industry expertise, we ensure safe, smooth, and unforgettable event experiences.
-    </p>
+      With two decades of industry expertise, we ensure safe, smooth, and unforgettable event
+      experiences. </p>
 
     <a routerLink="/about" class="btn btn-gold px-5 py-3 fw-semibold border-gold">About Us</a>
 
@@ -45,55 +42,90 @@
     <div class="row g-4 justify-content-center">
 
       <!-- Accreditation -->
-      <div class="col-md-6 col-lg-4">
-        <div class="service-card h-100 text-center p-4"
-             [routerLink]="['/services']"
-             fragment="accreditation"
-             style="cursor: pointer;">
-          <div class="service-icon">🛂</div>
-          <h5 class="text-gold fw-bold mb-3">Accreditation</h5>
-          <p>Advanced accreditation systems engineered for enhanced event security, identity management, and access control.</p>
-          <ul class="text-white-50 text-start mt-2">
-            <li>Plastic cards (PVC, RFID, NFC)</li>
-            <li>Lanyards with breakaway safety</li>
-            <li>Accreditation & access software</li>
-            <li>Premium fabric & waterproof wristbands</li>
-          </ul>
+      <div class="col-md-6 col-lg-4 bg-dark">
+        <div class="service-card h-100 text-center p-4" [routerLink]="['/services']" fragment="accreditation" style="cursor: pointer; 
+              background: #1a1a1a url('/assets/home1.png') center/cover no-repeat;
+              border-radius: 12px;
+              position: relative;
+              overflow: hidden;">
+
+          <!-- Dark overlay for readability -->
+          <div style="
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(2px);
+    "></div>
+
+          <!-- Content stays EXACTLY same -->
+          <div style="position: relative; z-index: 2;">
+            <div class="service-icon">🛂</div>
+            <h5 class="text-gold fw-bold mb-3">Accreditation</h5>
+            <p>Advanced accreditation systems engineered for enhanced event security, identity management, and access
+              control.</p>
+            <ul class="text-white-50 text-start mt-2">
+              <li>Plastic cards (PVC, RFID, NFC)</li>
+              <li>Lanyards with breakaway safety</li>
+              <li>Accreditation & access software</li>
+              <li>Premium fabric & waterproof wristbands</li>
+            </ul>
+          </div>
+
         </div>
       </div>
+
 
       <!-- Ticketing -->
       <div class="col-md-6 col-lg-4">
-        <div class="service-card h-100 text-center p-4"
-             [routerLink]="['/services']"
-             fragment="ticketing"
-             style="cursor: pointer;">
-          <div class="service-icon">🎟️</div>
-          <h5 class="text-gold fw-bold mb-3">Ticketing</h5>
-          <p>Premium access to global sports, entertainment shows, and arena events—delivered with a seamless booking experience.</p>
-          <ul class="text-white-50 text-start mt-2">
-            <li>International sports tickets</li>
-            <li>Concerts & arena shows</li>
-            <li>End-to-end travel + event packages</li>
-          </ul>
+        <div class="service-card h-100 text-center p-4" [routerLink]="['/services']" fragment="ticketing" style="cursor: pointer; 
+              background: #1a1a1a url('/assets/image7.jpg') center/cover no-repeat;
+              border-radius: 12px;
+              position: relative;
+              overflow: hidden;">
+          <div style="
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(2px);
+    "></div>
+          <div style="position: relative; z-index: 2;">
+            <div class="service-icon">🎟️</div>
+            <h5 class="text-gold fw-bold mb-3">Ticketing</h5>
+            <p>Premium access to global sports, entertainment shows, and arena events—delivered with a seamless booking
+              experience.</p>
+            <ul class="text-white-50 text-start mt-2">
+              <li>International sports tickets</li>
+              <li>Concerts & arena shows</li>
+              <li>End-to-end travel + event packages</li>
+            </ul>
+          </div>
         </div>
       </div>
-
       <!-- Software Solutions -->
       <div class="col-md-6 col-lg-4">
-        <div class="service-card h-100 text-center p-4"
-             [routerLink]="['/services']"
-             fragment="software-solutions"
-             style="cursor: pointer;">
-          <div class="service-icon">💻</div>
-          <h5 class="text-gold fw-bold mb-3">Software Solutions</h5>
-          <p>Enterprise platforms enabling smarter and more secure operations.</p>
-          <ul class="text-white-50 text-start mt-2">
-            <li>Visitor Management System (VMS)</li>
-            <li>Vehicle Tracking & Asset Tracking</li>
-            <li>HRMS & Canteen Management</li>
-            <li>Expo / Event Management Software</li>
-          </ul>
+        <div class="service-card h-100 text-center p-4" [routerLink]="['/services']" fragment="software-solutions"
+          style="cursor: pointer; 
+              background: #1a1a1a url('/assets/image10.jpg') center/cover no-repeat;
+              border-radius: 12px;
+              position: relative;
+              overflow: hidden;">
+          <div style="
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(2px);
+    "></div>
+          <div style="position: relative; z-index: 2;">
+            <div class="service-icon">💻</div>
+            <h5 class="text-gold fw-bold mb-3">Software Solutions</h5>
+            <p>Enterprise platforms enabling smarter and more secure operations.</p>
+            <ul class="text-white-50 text-start mt-2">
+              <li>Visitor Management System (VMS)</li>
+              <li>Vehicle Tracking & Asset Tracking</li>
+              <li>HRMS & Canteen Management</li>
+              <li>Expo / Event Management Software</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -177,7 +209,7 @@
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="steps-section py-5 text-white position-relative">
+<!-- <section class="steps-section py-5 text-white position-relative">
   <div class="container">
     <div class="text-center mb-5">
       <h2 class="text-gold mb-3">How It Works</h2>
@@ -220,7 +252,7 @@
 
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- TESTIMONIALS (unchanged) -->
 <!-- <section class="testimonials-section py-5 bg-gradient-dark text-white">
