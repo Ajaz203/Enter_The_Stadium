@@ -1,22 +1,4 @@
-.about-image-wrapper {
-  perspective: 1500px;
-  margin-top: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.tech-3d-cube {
-  position: relative;
-  width: 250px;
-  height: 250px;
-  transform-style: preserve-3d;
-  transition: transform 3s ease;
-}
-
-.spin-cube {
-  animation: spin 30s linear infinite;
-}
 
 .tech-3d-cube .face {
   position: absolute;
@@ -40,34 +22,6 @@
 .tech-3d-cube .right { transform: rotateY(90deg) translateZ(125px); }
 .tech-3d-cube .top { transform: rotateX(90deg) translateZ(125px); }
 .tech-3d-cube .bottom { transform: rotateX(-90deg) translateZ(125px); }
-
-/* Continuous Spin Animation */
-@keyframes spin {
-  0% {
-    transform: rotateX(-20deg) rotateY(0deg);
-  }
-  100% {
-    transform: rotateX(-20deg) rotateY(360deg);
-  }
-}
-
-
-/* Gate Opening Animation */
-@keyframes openGate {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(90deg);
-  }
-}
-
-/* Brand Fade-in */
-@keyframes fadeInBrand {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-}
-
 
 
 
@@ -164,12 +118,6 @@
   font-size: 20px;
 }
 
-.front { transform: translateZ(75px); }
-.back { transform: rotateY(180deg) translateZ(75px); }
-.left { transform: rotateY(-90deg) translateZ(75px); }
-.right { transform: rotateY(90deg) translateZ(75px); }
-.top { transform: rotateX(90deg) translateZ(75px); }
-.bottom { transform: rotateX(-90deg) translateZ(75px); }
 
 @keyframes rotateCube {
   0% { transform: rotateX(0) rotateY(0); }
@@ -238,4 +186,8 @@
   border-color: #ffd700;
   transform: translateY(-5px);
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+}
+span{
+  color:#d4af37;
+  font-weight:600;
 }

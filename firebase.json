@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "enterthestadium-9d5ce",
     "public": "dist/enter-the-stadium/browser/browser",
     "ignore": [
       "firebase.json",

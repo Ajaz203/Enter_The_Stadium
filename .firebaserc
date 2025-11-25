@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "enterthestadium-9d5ce"
+  },
+  "targets": {
+    "enterthestadium-9d5ce": {
+      "hosting": {
+        "enterthestadium-9d5ce": [
+          "enterthestadium-9d5ce"
+        ]
+      }
+    }
   }
 }
