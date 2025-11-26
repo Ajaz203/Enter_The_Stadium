@@ -1,6 +1,6 @@
 <!-- Hero Section -->
-<section class="hero-contact position-relative text-center text-white d-flex align-items-center" 
-         style="background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600') center/cover no-repeat; min-height: 40vh;">
+<section class="hero-contact position-relative text-center text-white d-flex align-items-center"
+  style="background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600') center/cover no-repeat; min-height: 40vh;">
   <div class="overlay w-100 h-100 position-absolute"></div>
   <div class="position-relative px-3 container" data-aos="fade-up">
     <h1 class="display-5 fw-bold text-gold">Contact Us</h1>
@@ -14,68 +14,103 @@
 <!-- Contact Section -->
 <section class="container py-5">
   <div class="row g-4">
-    
+
     <!-- Contact Form -->
     <div class="col-lg-6" data-aos="fade-right">
       <div class="card shadow-sm border-0 hover-shadow">
         <div class="card-body">
           <h2 class="h4 fw-bold mb-4 text-gold">Get in Touch</h2>
-          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-            
-            <div class="mb-3">
-              <label class="form-label">Your Name</label>
-              <input type="text" formControlName="name" class="form-control" placeholder="Enter your name" />
-              <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-danger small mt-1">
-                Name is required.
-              </div>
-            </div>
+     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" />
-              <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-danger small mt-1">
-                Enter a valid email.
-              </div>
-            </div>
+  <!-- NAME -->
+  <div class="mb-3">
+    <label class="form-label">
+      Your Name <span class="text-danger">*</span>
+    </label>
+    <input type="text" formControlName="name" class="form-control" placeholder="Enter your name" />
 
-            <div class="mb-3">
-              <label class="form-label">Phone</label>
-              <input type="text" formControlName="phone" class="form-control" placeholder="Enter your phone number" />
-            </div>
+    <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+      class="text-danger small mt-1">
+      Name is required.
+    </div>
+  </div>
 
-            <div class="mb-3">
-  <label class="form-label fw-semibold">Reason for Inquiry</label>
+  <!-- EMAIL -->
+  <div class="mb-3">
+    <label class="form-label">
+      Email <span class="text-danger">*</span>
+    </label>
+    <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" />
 
-  <select formControlName="reason" class="form-select custom-dropdown">
-    <!-- Placeholder -->
-    <option value="" disabled>Select the reason for your inquiry</option>
+    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+      class="text-danger small mt-1">
+      Enter a valid email.
+    </div>
+  </div>
 
-    <!-- Ticketing Section -->
-    <optgroup label="🎟️ Ticket Packages">
-      <option value="request-tickets">Request ticket packages for an event</option>
-      <option value="view-events">Browse available events</option>
-      <option value="other-ticket">Other – My event is not listed</option>
-    </optgroup>
+  <!-- PHONE -->
+  <div class="mb-3">
+    <label class="form-label">
+      Phone <span class="text-danger">*</span>
+    </label>
+    <input type="text" formControlName="phone" class="form-control" placeholder="Enter your phone number" />
 
-    <!-- Accreditation Section -->
-    <optgroup label="🛂 Accreditation Services">
-      <option value="cards-lanyards">Cards & Lanyards</option>
-      <option value="access-software">Access Control Software</option>
-      <option value="venue-consultation">Venue Setup Consultation</option>
-    </optgroup>
-  </select>
-</div>
+    <div *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
+      class="text-danger small mt-1">
+      Phone number is required.
+    </div>
+  </div>
 
+  <!-- REASON -->
+  <div class="mb-3">
+    <label class="form-label fw-semibold">
+      Reason for Inquiry <span class="text-danger">*</span>
+    </label>
 
-            <div class="mb-3">
-              <label class="form-label">Message</label>
-              <textarea rows="4" formControlName="message" class="form-control" placeholder="Your message here"></textarea>
-            </div>
+    <select formControlName="reason" class="form-select custom-dropdown">
+      <option value="" disabled>Select the reason for your inquiry</option>
 
-            <button type="submit" [disabled]="contactForm.invalid" class="btn btn-gold text-dark fw-semibold w-100">
-              Send Message
-            </button>
-          </form>
+      <optgroup label="🎟️ Ticket Packages">
+        <option value="request-tickets">Request ticket packages for an event</option>
+        <option value="view-events">Browse available events</option>
+        <option value="other-ticket">Other – My event is not listed</option>
+      </optgroup>
+
+      <optgroup label="🛂 Accreditation Services">
+        <option value="cards-lanyards">Cards & Lanyards</option>
+        <option value="access-software">Access Control Software</option>
+        <option value="venue-consultation">Venue Setup Consultation</option>
+      </optgroup>
+    </select>
+
+    <div *ngIf="contactForm.get('reason')?.invalid && contactForm.get('reason')?.touched"
+      class="text-danger small mt-1">
+      Please select a reason.
+    </div>
+  </div>
+
+  <!-- MESSAGE -->
+  <div class="mb-3">
+    <label class="form-label">
+      Message <span class="text-danger">*</span>
+    </label>
+    <textarea rows="4" formControlName="message" class="form-control"
+      placeholder="Your message here"></textarea>
+
+    <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+      class="text-danger small mt-1">
+      Message is required.
+    </div>
+  </div>
+
+  <!-- SUBMIT BUTTON -->
+  <button type="submit" [disabled]="contactForm.invalid"
+    class="btn btn-gold text-dark fw-semibold w-100">
+    Send Message
+  </button>
+
+</form>
+
         </div>
       </div>
     </div>
@@ -85,19 +120,21 @@
       <div class="card shadow-sm border-0 hover-shadow" data-aos="fade-left">
         <div class="card-body">
           <h3 class="h5 fw-bold mb-3 text-gold">Our Office</h3>
-          <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Dehradun, Uttarakhand</p>
+          <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>55 Lane-2, Westend Marg, Saiyad Ul Ajaib Village,
+            Saket, New Delhi, Delhi 110030</p>
           <p class="mb-1"><i class="fas fa-envelope me-2"></i>enterthestadium&#64;gmail.com</p>
           <p class="mb-1"><i class="fas fa-phone me-2"></i>+91 89798 68877</p>
         </div>
       </div>
 
       <div class="card shadow-sm border-0 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110204.5877145629!2d77.93473186629262!3d30.32555080743768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929c356c888af%3A0x4c3562c032518799!2sDehradun%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1763066039354!5m2!1sen!2sin" 
-          width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110204.5877145629!2d77.93473186629262!3d30.32555080743768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929c356c888af%3A0x4c3562c032518799!2sDehradun%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1763066039354!5m2!1sen!2sin"
+          width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
     </div>
-    
+
   </div>
 </section>

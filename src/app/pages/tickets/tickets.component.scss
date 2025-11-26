@@ -1,7 +1,25 @@
+.tickets-hero-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  color: #fff;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.tickets-hero-title span {
+  display: block;
+  margin-top: 14px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #d6d6d6;
+}
 .tickets-page-section {
   background-color: #0a0a0a;
   .text-gold {
-    color: #FFD700;
+    color: #d4af37;
   }
   .ticket-card {
     background: #1c1c1c;
@@ -31,5 +49,260 @@
 
 /* Swiper overrides */
 .swiper-button-next, .swiper-button-prev {
-  color: #FFD700;
+  color: #d4af37;
+}
+.text-gold {
+  color: #d4af37 !important;
+}
+
+
+.tickets-page-section {
+  background-color: #0a0a0a;
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .text-gold {
+    color: #d4af37 !important;
+  }
+
+  .post-card {
+    background-color: #1c1c1c;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .post-image-wrapper {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+
+      .post-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        display: block;
+      }
+
+      &:hover .post-img {
+        transform: scale(1.1);
+      }
+
+      .post-hover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        .btn-gold {
+          background-color: #ffd700;
+          color: #1c1c1c;
+          font-weight: 600;
+          padding: 0.5rem 1rem;
+     
+          text-decoration: none;
+          transition: background 0.3s ease;
+
+          &:hover {
+            background-color: #e6c200;
+            color: white;
+          }
+
+          i {
+            font-size: 0.9rem;
+          }
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.8);
+        }
+      }
+    }
+
+    .post-content {
+      text-align: center;
+      padding: 1rem;
+
+      .post-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+       
+        margin-bottom: 0.5rem;
+      }
+
+      .post-description {
+        font-size: 0.875rem;
+        color: #ccc;
+        min-height: 40px;
+      }
+    }
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+  .post-card .post-image-wrapper {
+    height: 180px;
+  }
+}
+
+@media (max-width: 575px) {
+  .post-card .post-image-wrapper {
+    height: 150px;
+  }
+}
+
+
+.post-card {
+  background: #0d0d0d;
+  border-radius: 14px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+}
+
+/* IMAGE WRAPPER */
+.post-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;   /* ✅ FIXED IMAGE HEIGHT */
+  overflow: hidden;
+}
+
+/* IMAGE */
+.post-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* ✅ NO STRETCH */
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.post-card:hover .post-img {
+  transform: scale(1.08);
+}
+
+/* HOVER OVERLAY */
+.post-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.2));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.post-card:hover .post-hover-overlay {
+  opacity: 1;
+}
+
+/* CONTENT */
+.post-content {
+  padding: 14px;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.post-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f7c948;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-description {
+  font-size: 13px;
+  color: #d9d9d9;
+  line-height: 1.4;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+/* BUTTON */
+.btn-gold {
+  background: linear-gradient(135deg, #f5c542, #d4a017);
+  color: #000;
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-size: 13px;
+  border: none;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #d4a017, #f5c542);
+}
+.post-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.post-image-wrapper:hover .post-hover-overlay {
+  opacity: 1;
+}
+
+/* Enquire button – main centered CTA */
+.btn-enquire {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+}
+
+/* Buy Online – small & bottom-right */
+.btn-buy-online {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px 14px;
+  font-size: 0.75rem;   
+  border-radius: 16px;
+  opacity: 0.85;
 }

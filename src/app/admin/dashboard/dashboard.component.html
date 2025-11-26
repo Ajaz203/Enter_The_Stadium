@@ -14,17 +14,26 @@
 
     <div class="row g-4">
 
-      <div class="col-md-4">
+      <!-- TITLE -->
+      <div class="col-md-6">
         <label class="form-label">Title</label>
         <input type="text" class="form-control custom-input" [(ngModel)]="newPost.title">
       </div>
 
-      <div class="col-md-4">
+      <!-- DESCRIPTION -->
+      <div class="col-md-6">
         <label class="form-label">Description</label>
         <input type="text" class="form-control custom-input" [(ngModel)]="newPost.description">
       </div>
 
-      <div class="col-md-4">
+      <!-- URL -->
+      <div class="col-md-6">
+        <label class="form-label">Redirect URL</label>
+        <input type="url" class="form-control custom-input" [(ngModel)]="newPost.url" placeholder="https://example.com">
+      </div>
+
+      <!-- IMAGE -->
+      <div class="col-md-6">
         <label class="form-label">Upload Image</label>
         <input type="file" class="form-control custom-input" (change)="onNewFileSelect($event)">
       </div>
@@ -34,16 +43,19 @@
         <img [src]="newImagePreview" class="preview-img">
       </div>
 
-
+      <!-- SUBMIT -->
       <div class="col-12 text-end">
         <button class="btn-save" (click)="addPost()" [disabled]="addingPost">
+
           <span *ngIf="addingPost" class="spinner-border spinner-border-sm me-2"></span>
+
           + Add Post
         </button>
       </div>
 
     </div>
   </div>
+
 
   <!-- POSTS TABLE -->
   <div class="card glass-card p-4">
@@ -54,9 +66,10 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Post ID</th>
+            <!-- <th>Post ID</th> -->
             <th>Title</th>
             <th>Description</th>
+            <th>URL</th>
             <th>Image</th>
             <th class="text-end">Actions</th>
           </tr>
@@ -65,11 +78,14 @@
         <tbody>
           <tr *ngFor="let post of posts; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ post.postId }}</td>
+            <!-- <td>{{ post.postId }}</td> -->
             <td>{{ post.title }}</td>
             <td>{{ post.description }}</td>
             <td>
-              <img [src]="API + '/uploads/' + post.image" class="table-img" alt="post">
+              <a *ngIf="post.url" [href]="post.url" target="_blank">{{ post.url }}</a>
+              <span *ngIf="!post.url">-</span>
+            <td>
+              <img [src]="apiUrl + '/uploads/' + post.image" class="table-img" alt="post">
             </td>
             <td class="text-end">
               <button class="btn-action edit me-2" data-bs-toggle="modal" data-bs-target="#editModal"
@@ -101,32 +117,34 @@
         <div class="modal-body">
           <div class="row g-4">
 
-            <div class="col-md-4">
+            <div class="col-md-6">
               <label class="form-label">Title</label>
               <input type="text" class="form-control custom-input" [(ngModel)]="editingPost.title">
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
               <label class="form-label">Description</label>
               <input type="text" class="form-control custom-input" [(ngModel)]="editingPost.description">
             </div>
+            <div class="col-md-6">
+              <label class="form-label">Redirect URL</label>
+              <input type="url" class="form-control custom-input" [(ngModel)]="editingPost.url"
+                placeholder="https://example.com">
 
-            <div class="col-md-4">
-              <label class="form-label">Upload New Image</label>
-              <input type="file" class="form-control custom-input" (change)="onEditFileSelect($event)">
-            </div>
-
-            <!-- PREVIEW -->
-            <!-- <div class="col-12 text-center" *ngIf="editImagePreview">
-              <img [src]="editingPost ? API + '/uploads/' + editImagePreview : editImagePreview" class="preview-img">
-            </div> -->
+              <div class="col-md-6">
+                <label class="form-label">Upload New Image</label>
+                <input type="file" class="form-control custom-input" (change)="onEditFileSelect($event)">
+              </div>
+         
+       
+          </div>
 
             <div class="col-12 text-center" *ngIf="editImagePreview; else existingImage">
               <img [src]="editImagePreview" class="preview-img">
             </div>
             <ng-template #existingImage>
               <div class="col-12 text-center">
-                <img [src]="API + '/uploads/' + editingPost.image" class="preview-img">
+                <img [src]="apiUrl + '/uploads/' + editingPost.image" class="preview-img">
               </div>
             </ng-template>
           </div>
@@ -148,6 +166,57 @@
 </div>
 
 
-<div *ngIf="loadingPosts" class="text-center my-3">
-  <div class="spinner-border text-primary" role="status"></div>
+<!-- ===================== -->
+<!-- CONTACT ENQUIRY SECTION -->
+<!-- ===================== -->
+
+<div class="card glass-card p-4 mt-5">
+  <h4 class="section-title mb-4">📨 Contact Enquiries</h4>
+
+  <div class="table-responsive">
+    <table class="table custom-table align-middle">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Reason</th>
+          <th>Message</th>
+
+          <th class="text-end">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let msg of contactMessages; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ msg.name }}</td>
+          <td>{{ msg.email }}</td>
+          <td>{{ msg.phone || '-' }}</td>
+          <td>{{ msg.reason }}</td>
+          <td class="text-wrap" style="max-width: 250px;">
+            {{ msg.message }}
+          </td>
+          <td class="text-end">
+            <button class="btn btn-sm btn-danger" (click)="deleteContact(msg.enquiryId)"
+              [disabled]="deletingContactId === msg.enquiryId" title="Delete">
+
+              <span *ngIf="deletingContactId === msg.enquiryId" class="spinner-border spinner-border-sm me-1"></span>
+
+              <i *ngIf="deletingContactId !== msg.enquiryId" class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LOADER -->
+  <div *ngIf="loadingContacts" class="text-center my-3">
+    <div class="spinner-border text-primary"></div>
+  </div>
 </div>

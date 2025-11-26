@@ -161,124 +161,62 @@ LanyardsTypes = [
       activeImage: 0,
       description: "Printed lanyard ID holders with vibrant color options and durable quality."
     }
-  // {
-  //   title: "ASI Plain White PVC Cards",
-  //   images: [
-  //     "assets/pvc/1.1.webp",
-  //     "assets/pvc/1.2.webp",
-  //     "assets/pvc/1.3.webp"
-  //   ],
-  //   description:
-  //     "High-quality glossy blank PVC cards, designed for lamination and long-term durability.",
-  //   specs: [
-  //     "Card Type: Blank Card",
-  //     "Material: PVC",
-  //     "Finish: Glossy",
-  //     "Shape: Square",
-  //     "Coating: Lamination"
-  //   ],
-  //   activeImage: 0
-  // },
 
-  // {
-  //   title: "Blank PVC ID Card",
-  //   images: [
-  //     "assets/pvc/2.1.webp",
-  //     "assets/pvc/2.2.webp",
-  //     "assets/pvc/2.3.webp"
-  //   ],
-  //   description:
-  //     "Premium blank PVC cards ideal for office, college, or professional identity use.",
-  //   specs: [
-  //     "Material: PVC",
-  //     "Finish: Glossy",
-  //     "Shape: Square",
-  //     "Holder Type: Plastic Lamination"
-  //   ],
-  //   activeImage: 0
-  // },
-
-  // {
-  //   title: "PVC Blank White Card",
-  //   images: [
-  //     "assets/pvc/3.1.webp",
-  //     "assets/pvc/3.2.webp"
-  //   ],
-  //   description:
-  //     "Non-laminated blank PVC cards with glossy finish and long-lasting print compatibility.",
-  //   specs: [
-  //     "Card Type: Blank",
-  //     "Material: PVC",
-  //     "Finish: Glossy",
-  //     "Shape: Square",
-  //     "Lamination: No"
-  //   ],
-  //   activeImage: 0
-  // },
-
-  // {
-  //   title: "Multicolor Election PVC Card",
-  //   images: [
-  //     "assets/pvc/4.webp"
-  //   ],
-  //   description:
-  //     "Matte-finish printed PVC cards suitable for election identity and event access.",
-  //   specs: [
-  //     "Card Type: ID Cards",
-  //     "Material: PVC",
-  //     "Finish: Matte",
-  //     "Shape: Square",
-  //     "Coating: Lamination"
-  //   ],
-  //   activeImage: 0
-  // },
-
-  // {
-  //   title: "PVC ID Card",
-  //   images: [
-  //     "assets/pvc/5.webp"
-  //   ],
-  //   description:
-  //     "Premium PVC cards used across industries with perfect CR80 standard dimensions.",
-  //   specs: [
-  //     "Color: White",
-  //     "Finish: Glossy",
-  //     "Dimensions: 86 × 54 mm",
-  //     "Thickness: 0.7–0.9 mm"
-  //   ],
-  //   activeImage: 0
-  // },
-
-  // {
-  //   title: "ID Card Printing",
-  //   images: [
-  //     "assets/pvc/6.1.webp",
-  //     "assets/pvc/6.2.webp",
-  //     "assets/pvc/6.3.webp",
-  //     "assets/pvc/6.4.webp"
-  //   ],
-  //   description:
-  //     "Offset-printed double-sided PVC ID cards for corporate, schools, and events.",
-  //   specs: [
-  //     "Material: PVC",
-  //     "Type: Double Sided",
-  //     "Technology: Offset Printing",
-  //     "Holder: Lanyard Supported"
-  //   ],
-  //   activeImage: 0
-  // }
 ];
 
 
   wristbandTypes: IdCardType[] = [
+    // {
+    //   title: "Multicolor Plastic ID Card Holder With Lanyard",
+    //   images: [
+    //     "assets/2.1.webp",
+      
+    //   ],
+    //   description: "Printed lanyard ID holders with vibrant color options and durable quality.",
+    //   activeImage: 0
+    // },
     {
-      title: "Multicolor Plastic ID Card Holder With Lanyard",
+      title: "Multicolor Tyvek Wrirtband - Non Tearable writbands ",
       images: [
-        "assets/2.1.webp",
+        "assets/multli color tyvek writband.jpeg",
       
       ],
-      description: "Printed lanyard ID holders with vibrant color options and durable quality.",
+      description: "",
       activeImage: 0
+    },
+    {
+      title: "Single Color Printed Tyvek Wrirtband - Non-Tearable Wristbands ",
+      images: [
+        "assets/printed tyvek.jpeg",
+      
+      ],
+      description: "",
+      activeImage: 0
+    },
+    {
+      title: "Multi Color Tyvek Wrirtband - Non-Tearable Wristbands ",
+      images: [
+        "assets/tyvek wristband.jpeg",
+      
+      ],
+      description: "",
+      activeImage: 0
+    },
+    {
+      title: "Fabric Writband Multicolor ",
+      images: [
+        "assets/fabric writsband.jpeg",
+      
+      ],
+      description: "",
+    },
+    {
+      title: "Silicon custom print writband",
+      images: [
+        "assets/rubber writband.jpeg",
+      
+      ],
+      description: "",
     }
   ];
 

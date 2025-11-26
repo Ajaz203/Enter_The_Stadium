@@ -1,43 +1,85 @@
+
+
+
 <section class="tickets-page-section py-5 bg-dark text-white">
-  <h1 class="section-title text-center  mb-4">Your next premium event experience starts here—choose from our
-    list of top events and hospitality packages.</h1>
   <div class="container">
-    <h2 class="section-title text-center text-gold mb-4">Featured Concerts</h2>
+ <h1 class="tickets-hero-title text-gold mb-4">
+  Check for the premium events in your town
+  <span>
+    Experience a smoother way to enjoy your favorite events—just send us an inquiry, and our team will reach out within 24 hours.
+    Skip the long box office queues and get your passes delivered straight to your doorstep, completely hassle-free.
+    Try the ETS way and feel like a VIP, or stick to the old-fashioned way and book online—the choice is yours.
+    With expert guidance to help you find the best seats and the most exciting events in your city, every moment becomes effortless and unforgettable.
+    We deal only in <b class="text-gold">VIP / Hospitality Packages</b>.
+  </span>
+</h1>
 
-    <!-- Swiper Slider -->
-    <div *ngIf="featuredEvents.length > 0" class="swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" *ngFor="let event of featuredEvents">
-          <div class="ticket-card shadow rounded p-3 text-center">
-            <img [src]="getEventImage(event)" [alt]="event.name" class="img-fluid rounded mb-2" />
-            <h5 class="text-gold">{{ event.name }}</h5>
-            <p class="text-light">{{ event.dates.start.localDate }} | {{ event.dates.start.localTime }}</p>
-            <a [href]="event.url" target="_blank" class="btn btn-gold mt-2">Book Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+
+    <h2 class="section-title text-center text-gold mb-4">Featured Posts & Events</h2>
+
+    <!-- Loader -->
+    <div *ngIf="loadingCards" class="text-center text-light mb-4">
+      <div class="spinner-border text-gold" role="status"></div>
+      <span class="ms-2">Loading posts...</span>
     </div>
 
-    <!-- Error / Loading -->
-    <div *ngIf="loading" class="text-center text-light mt-4">Loading concerts...</div>
-    <div *ngIf="!loading && error" class="text-center text-light mt-4">{{ error }}</div>
-
-    <!-- All Concerts Grid -->
-    <h2 class="section-title text-center text-gold mb-4 mt-5">All Music Concerts</h2>
-    <div class="row g-4">
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let event of tickets">
-        <div class="ticket-card position-relative overflow-hidden rounded shadow">
-          <img [src]="getEventImage(event)" [alt]="event.name" class="ticket-img w-100">
-          <div class="ticket-overlay d-flex flex-column justify-content-end p-3">
-            <h5 class="text-gold fw-bold mb-1">{{ event.name }}</h5>
-            <p class="small mb-2">{{ event.dates.start.localDate }} | {{ event.dates.start.localTime }}</p>
-            <a [href]="event.url" target="_blank" class="btn btn-gold fw-semibold border-gold">Book Now</a>
-          </div>
-        </div>
-      </div>
+    <!-- Error -->
+    <div *ngIf="!loadingCards && errorCards" class="text-center text-light mb-4">
+      {{ errorCards }}
     </div>
 
+    <!-- Cards Grid -->
+ <div class="row g-4" *ngIf="!loadingCards && postsForCards.length > 0">
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let post of postsForCards">
+
+    <div class="post-card">
+
+      <!-- IMAGE -->
+      <div class="post-image-wrapper">
+        <img 
+          [src]="post.image"
+          [alt]="post.title"
+          class="post-img"
+          (error)="post.image='assets/default-post.jpg'"
+        >
+
+        <!-- Hover Overlay -->
+     <div class="post-hover-overlay">
+
+  <!-- Enquire Button Center -->
+  <button class="btn btn-gold btn-enquire" routerLink="/contact">
+    Enquire Us
+  </button>
+
+  <!-- Buy Online Bottom Right -->
+<a 
+  [href]="post.url"
+  target="_blank"
+  class="btn btn-outline-light btn-buy-online">
+  Buy Online
+</a>
+
+
+
+</div>
+
+      </div>
+
+      <!-- CONTENT -->
+      <div class="post-content">
+        <h5 class="post-title">{{ post.title }}</h5>
+        <p class="post-description">{{ post.description }}</p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+    <!-- No posts message -->
+    <div *ngIf="!loadingCards && postsForCards.length === 0" class="text-center text-light mt-4">
+      No posts available
+    </div>
   </div>
 </section>
