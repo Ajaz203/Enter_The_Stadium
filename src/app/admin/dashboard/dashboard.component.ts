@@ -131,33 +131,53 @@ deleteContact(id: string) {
   }
 
   // ---------------- ADD POST ----------------
-  addPost(): void {
-    if (!this.newPost.title || !this.newPost.description) {
-      this.toastr.error('Please fill all fields');
-      return;
-    }
-
-    this.addingPost = true;
-
-    const form = new FormData();
-    form.append('title', this.newPost.title);
-    form.append('description', this.newPost.description);
-    if (this.newImageFile) form.append('image', this.newImageFile);
-    form.append('url', this.newPost.url);
-
-    this.postService.createPost(form).subscribe({
-      next: () => {
-        this.toastr.success('Post added successfully!');
-        this.getPosts();
-        this.resetAddForm();
-        this.addingPost = false;
-      },
-      error: () => {
-        this.toastr.error('Failed to add post');
-        this.addingPost = false;
-      }
-    });
+addPost(): void {
+  if (!this.newPost.title || !this.newPost.description || !this.newPost.url) {
+    this.toastr.error('All fields are required');
+    return;
   }
+
+  this.addingPost = true;
+
+  const form = new FormData();
+  form.append('title', this.newPost.title);
+  form.append('description', this.newPost.description);
+  form.append('url', this.newPost.url);
+
+  if (this.newImageFile) {
+    form.append('image', this.newImageFile);
+  }
+
+  this.postService.createPost(form).subscribe({
+    next: (res) => {
+      this.toastr.success(res?.message || 'Post added successfully!');
+      this.getPosts();
+      this.resetAddForm();
+      this.addingPost = false;
+    },
+
+    error: (err) => {
+      console.error('Add Post Error:', err);
+
+      // ✅ Handle known backend error (400)
+      if (err.status === 400) {
+        this.toastr.error(err.error?.message || 'Duplicate post detected');
+      } 
+      // ✅ Handle server errors
+      else if (err.status === 500) {
+        this.toastr.error('Server error. Please try again later.');
+      } 
+      // ✅ Fallback
+      else {
+        this.toastr.error('Failed to add post');
+      }
+
+      this.addingPost = false;
+    }
+  });
+}
+
+
 
   // ---------------- SELECT POST ----------------
   selectPost(post: Post): void {
